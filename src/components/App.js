@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    return fetch(`http://localhost:4004/jobs`)
+    return fetch(`${process.env.REACT_APP_API_HOST}/jobs`)
       .then(response => response.json())
       .then(data => data.results)
       .then(jobs => this.setState({ jobs }))
