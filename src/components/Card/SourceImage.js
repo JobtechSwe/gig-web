@@ -2,6 +2,7 @@ import React from 'react'
 
 import justArrivedLogo from '../../resources/img/just-arrived.png'
 import gigstrLogo from '../../resources/img/gigstr.png'
+import taskRunnerLogo from '../../resources/img/task-runner.png'
 
 const sources = {
   'justarrived': {
@@ -13,8 +14,8 @@ const sources = {
     image: gigstrLogo
   },
   'task-runner': {
-    name: 'Taskrunner',
-    image: gigstrLogo
+    name: 'Task runner',
+    image: taskRunnerLogo
   }
 }
 
