@@ -50,7 +50,7 @@ const Spinner = styled.div`
 const Loader = styled(
   ({ className }) => <div className={className}><Spinner /></div>
 )`
-  height: calc(100vh - 50px);
+  height: calc(100vh - 73px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -159,13 +159,16 @@ class MapPage extends Component {
   }
 
   render() {
+    const header = document.querySelector('.navbar')
+    const headerHeight = header ? header.offsetHeight : 60
+
     if (this.state.loading) {
       return <Loader />
     }
 
     if (!this.state.position) {
       return (
-        <div className="container" style={{ textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', height: 'calc(100vh - 50px)' }}>
+        <div className="container" style={{ textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', height: `calc(100vh - ${headerHeight}px)` }}>
           <div style={{ marginBottom: '30px' }}>
             You need to allow GIG to access your position in order to use the map tool.
           </div>
@@ -178,9 +181,6 @@ class MapPage extends Component {
     }
 
     const { latitude, longitude } = this.state.position.coords
-
-    const header = document.querySelector('.navbar')
-    const headerHeight = header ? header.offsetHeight : 60
 
     return (
       <div>
