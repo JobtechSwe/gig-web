@@ -1,18 +1,33 @@
 import React, { Component, Fragment } from 'react'
 
-import Card from './Card/Card'
+import SortedJobList from './Jobs/SortedJobList'
 import Header from './Header/Header'
-import Search from './Search'
 import MapButton from './MapButton'
-import AvailableJobsCounter from './AvailableJobsCounter'
+import Search from './Search'
+
+const getSearchFromQueryString = (queryString) =>
+  queryString
+    .replace('?', '')
+    .split('&')
+    .reduce((search, kv) => {
+      const parts = kv.split('=')
+      return parts.length === 2 && parts[0] === 'q'
+        ? parts[1].split('+').join(' ')
+        : search
+    }, '')
 
 class App extends Component {
   constructor() {
     super()
 
     this.state = {
+      search: getSearchFromQueryString(window.location.search),
       jobs: []
     }
+  }
+
+  onSearch(event) {
+    this.setState({ search: event.target.value })
   }
 
   componentDidMount() {
@@ -26,10 +41,9 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-        <Search />
+        <Search onSearch={this.onSearch.bind(this)} search={this.state.search} />
         <div className="container">
-          <AvailableJobsCounter count={this.state.jobs.length} />
-          {this.state.jobs.map(job => <Card key={job.id} job={job} />)}
+          <SortedJobList jobs={this.state.jobs} search={this.state.search} />
         </div>
         <MapButton />
       </Fragment>

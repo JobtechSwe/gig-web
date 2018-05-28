@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import colors from '../colors'
 
-const Search = styled(
-  ({ className }) =>
-    <div className={[className, 'container'].join(' ')}>
-      <SearchInput />
-    </div>
-)`
+class Search extends Component {
+  render() {
+    return (
+      <div className={[this.props.className, 'container'].join(' ')}>
+        <SearchInput value={this.props.search} onChange={this.props.onSearch} />
+      </div>
+    )
+  }
+}
+
+const StyledSearch = styled(Search)`
   background: ${colors.primary};
   color: white;
   padding-top: 1em;
@@ -25,9 +30,15 @@ const SearchIcon = styled(({ className }) => <i className={['i-af-search', class
 `
 
 const SearchInput = styled(
-  ({ className }) =>
+  ({ className, value, onChange }) =>
     <div className="form-group" style={{ position: 'relative' }}>
-      <input type="text" className={['form-control', className].join(' ')} placeholder="Sök efter yrke eller ort" />
+      <input
+        className={['form-control', className].join(' ')}
+        onChange={onChange}
+        placeholder="Sök efter yrke eller ort"
+        type="text"
+        value={value}
+      />
       <SearchIcon />
     </div>
 )`
@@ -37,4 +48,4 @@ const SearchInput = styled(
   border: none;
 `
 
-export default Search
+export default StyledSearch
