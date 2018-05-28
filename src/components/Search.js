@@ -35,7 +35,7 @@ const SearchInput = styled(
       <input
         className={['form-control', className].join(' ')}
         onChange={onChange}
-        placeholder="Sök efter yrke eller ort"
+        placeholder="Search by city or competence"
         type="text"
         value={value}
       />

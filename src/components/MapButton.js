@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import colors from '../colors'
-import MapIcon from './MapIcon'
+import MapIcon from './Icons/MapIcon'
 
 const MapButton = styled(
   ({ className }) =>

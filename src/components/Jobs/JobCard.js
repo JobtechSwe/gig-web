@@ -8,8 +8,8 @@ import Footer from '../Card/Footer'
 import Preamble from '../Card/Preamble'
 import SourceImage from '../Card/SourceImage'
 
-import CalendarIcon from '../Card/Icons/CalendarIcon'
-import LocationIcon from '../Card/Icons/LocationIcon'
+import Duration from '../Card/Icons/Duration'
+import Location from '../Card/Icons/Location'
 import IconContainer from '../Card/Icons/IconContainer'
 
 const cleanPreamble = preamble =>
@@ -31,8 +31,8 @@ const JobCard = ({ job }) =>
           <span dangerouslySetInnerHTML={{ __html: cleanPreamble(job.preamble) }} />
         </Preamble>
         <IconContainer>
-          <LocationIcon location={extractCityFromAddress(job.address)} />
-          <CalendarIcon start={job.startDate} end={job.endDate} />
+          <Location location={extractCityFromAddress(job.address)} />
+          <Duration start={job.startDate} end={job.endDate} />
         </IconContainer>
       </Body>
       <Footer>

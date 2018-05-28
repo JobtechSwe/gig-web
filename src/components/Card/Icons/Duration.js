@@ -3,14 +3,15 @@ import styled from 'styled-components'
 import dayjs from 'dayjs'
 
 import colors from '../../../colors'
+import CalendarIcon from '../../Icons/CalendarIcon'
 
 const DATE_FORMAT = 'D MMM' // D = day of month, MMM = short month, e.g. jan, apr, dec
 
-const CalendarIcon = styled(
+const Duration = styled(
   ({ className, start, end }) =>
     <div>
-      <i className={[ 'i-af-calendar-alt', className ].join(' ')} />
-      {dayjs(start).format(DATE_FORMAT)} - {dayjs(end).format(DATE_FORMAT)}
+      <CalendarIcon />
+      <span style={{ color: colors.gray90 }}>{dayjs(start).format(DATE_FORMAT)} - {dayjs(end).format(DATE_FORMAT)}</span>
     </div>
 )`
   color: ${colors.blue};
@@ -18,4 +19,4 @@ const CalendarIcon = styled(
   font-size: 1.4em;
 `
 
-export default CalendarIcon
+export default Duration
