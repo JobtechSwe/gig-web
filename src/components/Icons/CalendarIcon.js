@@ -7,7 +7,7 @@ const CalendarIcon = styled(
   ({ className, fill }) => <i className={[ 'i-af-calendar-alt', className ].join(' ')} />
 )`
   color: ${({ fill }) => fill || colors.blue};
-  margin-right: 0.4em;
+  margin-right: ${({ padRight }) => padRight ? '0.4em' : '0'};
   font-size: 1.4em;
   width: 21px;
   height: 21px;

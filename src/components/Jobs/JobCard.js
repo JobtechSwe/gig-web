@@ -22,13 +22,18 @@ const extractCityFromAddress = address =>
     ? address.substr(address.indexOf(',') + 1).trim()
     : address
 
+const firstSentence = (text) =>
+  text.indexOf('.') === -1
+    ? text
+    : text.substr(0, text.indexOf('.') + 1)
+
 const JobCard = ({ job }) =>
   <Link to={`/jobs/${job.id}`}>
     <Card>
       <Body>
         <Title>{job.title}</Title>
         <Preamble>
-          <span dangerouslySetInnerHTML={{ __html: cleanPreamble(job.preamble) }} />
+          <span dangerouslySetInnerHTML={{ __html: cleanPreamble(firstSentence(job.preamble)) }} />
         </Preamble>
         <IconContainer>
           <Location location={extractCityFromAddress(job.address)} />

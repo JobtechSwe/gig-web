@@ -11,7 +11,7 @@ const Card = styled(
 ))`
   background: ${colors.white};
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
-  margin-bottom: 1.5em;
+  margin-bottom: 15px;
 `
 
 export default Card

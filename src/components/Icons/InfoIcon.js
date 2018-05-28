@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import colors from '../../colors'
 
 const CalendarIcon = styled(
-  ({ className, fill }) => <i className={[ 'i-af-clock', className ].join(' ')} />
+  ({ className, fill }) => <i className={[ 'i-info-circle-solid', className ].join(' ')} />
 )`
   color: ${({ fill }) => fill || colors.blue};
   margin-right: ${({ padRight }) => padRight ? '0.4em' : '0'};
