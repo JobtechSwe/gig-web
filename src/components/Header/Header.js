@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Logo from './Logo'
@@ -7,7 +8,9 @@ const Header = styled(({ className }) =>
   <div className={'navbar navbar-default ' + className}>
     <div className="container">
       <div className="navbar-header">
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
       </div>
     </div>
   </div>

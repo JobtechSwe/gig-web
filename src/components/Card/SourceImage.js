@@ -4,12 +4,16 @@ import justArrivedLogo from '../../resources/img/just-arrived.png'
 import gigstrLogo from '../../resources/img/gigstr.png'
 
 const sources = {
-  'just-arrived': {
+  'justarrived': {
     name: 'Just Arrived',
     image: justArrivedLogo
   },
   'gigstr': {
     name: 'Gigstr',
+    image: gigstrLogo
+  },
+  'task-runner': {
+    name: 'Taskrunner',
     image: gigstrLogo
   }
 }

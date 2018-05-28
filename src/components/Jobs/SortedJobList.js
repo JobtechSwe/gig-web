@@ -11,7 +11,7 @@ const getKeywords = (searchString) =>
 const getJobRelevance = (job, search) =>
   getKeywords(search)
     .reduce((relevance, keyword) => {
-      if (job.location.toLowerCase().includes(keyword.toLowerCase())) relevance++
+      if (job.address.toLowerCase().includes(keyword.toLowerCase())) relevance++
       if (job.title.toLowerCase().includes(keyword.toLowerCase())) relevance++
       if (job.text.toLowerCase().includes(keyword.toLowerCase())) relevance++
 
