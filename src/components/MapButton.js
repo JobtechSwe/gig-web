@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import colors from '../colors'
@@ -6,9 +7,11 @@ import MapIcon from './Icons/MapIcon'
 
 const MapButton = styled(
   ({ className }) =>
-    <div className={className}>
-      <MapIcon fill={colors.white} />
-    </div>
+    <Link to="/map">
+      <div className={className}>
+        <MapIcon fill={colors.white} />
+      </div>
+    </Link>
 )`
   position: fixed;
   display: flex;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -12,13 +12,20 @@ const BackArrow = styled(
   opacity: 1;
 `
 
-const BackButton = ({ className }) =>
-  <Link to="/">
-    <div className={className}>
-      <BackArrow />
-      Back
-    </div>
-  </Link>
+class BackButton extends Component {
+  static contextTypes = {
+    router: () => null
+  }
+
+  render() {
+    return (
+      <div className={this.props.className} onClick={this.context.router.history.goBack}>
+        <BackArrow />
+        Back
+      </div>
+    )
+  }
+}
 
 const StyledBackButton = styled(BackButton)`
   background: ${colors.primary};

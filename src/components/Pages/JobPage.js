@@ -99,7 +99,7 @@ class JobPage extends Component {
           <p><strong>About the job</strong></p>
 
           <div style={{ marginBottom: '15px' }} dangerouslySetInnerHTML={{ __html: job.text }} />
-          {job.text.length > 100 && <ApplyButton link={job.link} />}
+          {job.text.length > 250 && <ApplyButton link={job.link} />}
         </Body>
       </Card>
     )
