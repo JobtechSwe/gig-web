@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    return fetch(`${process.env.REACT_APP_API_HOST}/jobs`)
+    return fetch(`${process.env.REACT_APP_API_HOST}/jobs?page=1&pageLimit=1000`)
       .then(response => response.json())
       .then(data => data.results)
       .then(jobs => this.setState({ jobs }))
