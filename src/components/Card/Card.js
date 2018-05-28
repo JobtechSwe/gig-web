@@ -20,7 +20,7 @@ const Card = styled(
         <Title>{job.title}</Title>
         <Preamble>{job.preamble}</Preamble>
         <IconContainer>
-          <LocationIcon location={job.location} />
+          <LocationIcon location={job.address} />
           <CalendarIcon start={job.startDate} end={job.endDate} />
         </IconContainer>
       </Body>
