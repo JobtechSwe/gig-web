@@ -36,6 +36,7 @@ const ApplyButton = styled(
 )`
   background: ${colors.primary};
   border-color: ${colors.primary};
+  font-size: 16px;
   width: 100%;
   font-weight: normal;
   text-transform: none;

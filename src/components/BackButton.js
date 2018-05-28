@@ -9,7 +9,7 @@ const BackArrow = styled(
 )`
   display: inline-block;
   margin: 0 0.6em;
-  opacity: 0.5;
+  opacity: 1;
 `
 
 const BackButton = ({ className }) =>
