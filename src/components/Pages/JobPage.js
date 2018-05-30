@@ -1,52 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import styled from 'styled-components'
-import dayjs from 'dayjs'
 
 import colors from '../../colors'
 
 import BackButton from '../BackButton'
-import Body from '../Card/Body'
-import Card from '../Card/Card'
-import Header from '../Card/Header'
-import Title from '../Card/Title'
-import SourceImage from '../Card/SourceImage'
-
-import CalendarIcon from '../Icons/CalendarIcon'
-import ClockIcon from '../Icons/ClockIcon'
-import InfoIcon from '../Icons/InfoIcon'
-import MapIcon from '../Icons/MapIcon'
-
-const DATE_FORMAT = 'D MMM'
-
-const getHostFromLink = (link) => new URL(link).host
-
-const ApplyInfo = ({ link }) =>
-  <div>
-    <small><InfoIcon padRight /> You apply for the job at {getHostFromLink(link)}</small>
-  </div>
-
-const ApplyButton = styled(
-  ({ className, link }) =>
-    <div>
-      <a href={link} target="_blank" className={['btn', 'btn-primary', className].join(' ')}>
-        Apply for this job
-      </a>
-      <ApplyInfo link={link} />
-    </div>
-)`
-  background: ${colors.primary};
-  border-color: ${colors.primary};
-  font-size: 16px;
-  width: 100%;
-  font-weight: normal;
-  text-transform: none;
-  margin-bottom: 10px;
-
-  &:hover {
-    background: ${colors.primaryDark};
-    border-color: ${colors.primary};
-  }
-`
+import Job from '../Jobs/Job'
+import Loader from '../Spinner/Loader'
 
 class JobPage extends Component {
   constructor() {
@@ -74,39 +32,12 @@ class JobPage extends Component {
         <div className="container" style={{ marginTop: '1.1em' }}>
           {
             job
-              ? this.renderJob(job)
-              : this.renderLoader()
+              ? <Job job={job} />
+              : <Loader color={colors.gray50} size={50} />
           }
         </div>
       </Fragment>
     )
-  }
-
-  renderJob(job) {
-    return (
-      <Card>
-        <Header>
-          <SourceImage source={job.source} />
-        </Header>
-        <Body>
-          <Title>{job.title}</Title>
-          <div style={{ margin: '1em 0' }}><MapIcon padRight /> {job.address}</div>
-          <div style={{ margin: '1em 0' }}><CalendarIcon padRight /> {dayjs(job.startDate).format(DATE_FORMAT)} - {dayjs(job.endDate).format(DATE_FORMAT)}</div>
-          <div style={{ margin: '1em 0' }}><ClockIcon padRight /> Apply before {dayjs(job.endDate).format(DATE_FORMAT)}</div>
-
-          <ApplyButton link={job.link} />
-
-          <p><strong>About the job</strong></p>
-
-          <div style={{ marginBottom: '15px' }} dangerouslySetInnerHTML={{ __html: job.text }} />
-          {job.text.length > 250 && <ApplyButton link={job.link} />}
-        </Body>
-      </Card>
-    )
-  }
-
-  renderLoader() {
-    return <div>Loading...</div>
   }
 }
 

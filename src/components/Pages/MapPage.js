@@ -9,7 +9,7 @@ import markerIcon from '../../resources/img/marker.svg'
 import colors from '../../colors'
 
 import JobCard from '../Jobs/JobCard'
-import Spinner from '../Spinner'
+import Loader from '../Spinner/Loader'
 
 const CloseButton = styled(({ className }) => <Link to="/" className={className}><i className="i-times"></i> Close</Link>)`
   position: absolute;
@@ -17,18 +17,6 @@ const CloseButton = styled(({ className }) => <Link to="/" className={className}
   left: 10px;
   color: black;
   z-index: 100000;
-`
-
-const Loader = styled(
-  ({ className }) =>
-    <div className={className}>
-      <Spinner color={colors.gray50} size={50} />
-     </div>
-)`
-  height: calc(100vh - 73px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `
 
 const Map = withScriptjs(withGoogleMap(({ lat, lng, jobs, onSelectJob, onMapClick }) =>
@@ -110,7 +98,7 @@ class MapPage extends Component {
     const headerHeight = header ? header.offsetHeight : 60
 
     if (this.state.loading) {
-      return <Loader />
+      return <Loader color={colors.gray50} size={50} />
     }
 
     if (!this.state.position) {
