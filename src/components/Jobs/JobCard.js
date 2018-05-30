@@ -1,10 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import Body from '../Card/Body'
 import Card from '../Card/Card'
 import Title from '../Card/Title'
 import Footer from '../Card/Footer'
+import Header from '../Card/Header'
 import Preamble from '../Card/Preamble'
 import SourceImage from '../Card/SourceImage'
 
@@ -27,23 +27,29 @@ const firstSentence = (text) =>
     ? text
     : text.substr(0, text.indexOf('.') + 1)
 
-const JobCard = ({ job }) =>
-  <Link to={`/jobs/${job.id}`}>
-    <Card>
-      <Body>
-        <Title>{job.title}</Title>
-        <Preamble>
-          <span dangerouslySetInnerHTML={{ __html: cleanPreamble(firstSentence(job.preamble)) }} />
-        </Preamble>
-        <IconContainer>
-          <Location location={extractCityFromAddress(job.address)} />
-          <Duration start={job.startDate} end={job.endDate} />
-        </IconContainer>
-      </Body>
-      <Footer>
+const JobCard = ({ job, children, sourceImagePosition = 'footer' }) =>
+  <Card>
+    {
+      sourceImagePosition === 'header' &&
+      <Header>
         <SourceImage source={job.source} />
-      </Footer>
-    </Card>
-  </Link>
+      </Header>
+    }
+    <Body>
+      <Title>{job.title}</Title>
+      <Preamble dangerouslySetInnerHTML={{ __html: cleanPreamble(firstSentence(job.preamble)) }} />
+      <IconContainer>
+        <Location location={extractCityFromAddress(job.address)} />
+        <Duration start={job.startDate} end={job.endDate} />
+      </IconContainer>
+      {children}
+    </Body>
+    {
+      sourceImagePosition === 'footer' &&
+        <Footer>
+          <SourceImage source={job.source} />
+        </Footer>
+    }
+  </Card>
 
 export default JobCard
