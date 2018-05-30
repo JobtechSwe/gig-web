@@ -12,12 +12,14 @@ import colors from '../../colors'
 import JobCard from '../Jobs/JobCard'
 import Loader from '../Spinner/Loader'
 
-const CloseButton = styled(({ className }) => <Link to="/" className={className}><i className="i-times"></i> Close</Link>)`
+const CloseButton = styled(({ className }) => <Link to="/" className={className}><i className="i-times"></i></Link>)`
   position: absolute;
   top: 80px;
-  left: 10px;
+  left: 16px;
   color: black;
+  font-size: 24px;
   z-index: 100000;
+  text-shadow: 0 0 8px ${colors.gray50};
 `
 
 const Map = withScriptjs(withGoogleMap(({ lat, lng, jobs, onSelectJob, onMapClick }) =>
