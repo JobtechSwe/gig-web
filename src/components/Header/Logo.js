@@ -32,8 +32,8 @@ const AFLogo = styled(
       alt="Arbetsförmedlingen"
     />
 )`
-  width: 60%;
-  line-height: 2em;
+  width: auto;
+  max-height: 30px;
 `
 
 const Logo = ({ className }) =>

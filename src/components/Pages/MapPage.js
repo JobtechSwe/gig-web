@@ -61,6 +61,11 @@ const SelectedJobCard = styled(({ className, job }) =>
   width: calc(100% - 20px);
   left: 10px;
   bottom: 0;
+
+  @media(min-width: 768px) {
+    width: 500px;
+    left: calc(50% - 250px);
+  }
 `
 
 class MapPage extends Component {

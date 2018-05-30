@@ -6,8 +6,10 @@ import SearchInput from './SearchInput'
 
 const SearchBox = styled(
   ({ className, search, onSearch }) =>
-    <div className={[className, 'container'].join(' ')}>
-      <SearchInput value={search} onChange={onSearch} />
+    <div className={[className].join(' ')}>
+      <div className="container">
+        <SearchInput value={search} onChange={onSearch} />
+      </div>
     </div>
 )`
   background: ${colors.primary};

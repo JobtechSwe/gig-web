@@ -17,29 +17,35 @@ const Section = styled.div`
 `
 
 const Job = ({ job }) =>
-  <Card>
-    <Header>
-      <SourceImage source={job.source} />
-    </Header>
-    <Body>
-      <Title>{job.title}</Title>
-      <Section>
-        <MapIcon padRight /> {job.address}
-      </Section>
-      <Section>
-        <CalendarIcon padRight /> {formatDateRange(job.startDate, job.endDate)}
-      </Section>
-      <Section>
-        <ClockIcon padRight /> Apply before {formatDate(job.endDate)}
-      </Section>
+  <div className="row">
+    <div className="col-md-8 col-md-offset-2">
+      <Card>
+        <Header>
+          <SourceImage source={job.source} />
+        </Header>
+        <Body>
+          <Title>{job.title}</Title>
+          <Section>
+            <MapIcon padRight /> {job.address}
+          </Section>
+          <Section>
+            <CalendarIcon padRight /> {formatDateRange(job.startDate, job.endDate)}
+          </Section>
+          <Section>
+            <ClockIcon padRight /> Apply before {formatDate(job.endDate)}
+          </Section>
 
-      <ApplyButton link={job.link} />
+          <div className="visible-xs">
+            <ApplyButton link={job.link} />
+          </div>
 
-      <p><strong>About the job</strong></p>
+          <p><strong>About the job</strong></p>
 
-      <div style={{ marginBottom: '15px' }} dangerouslySetInnerHTML={{ __html: job.text }} />
-      {job.text.length > 250 && <ApplyButton link={job.link} />}
-    </Body>
-  </Card>
+          <div style={{ marginBottom: '15px' }} dangerouslySetInnerHTML={{ __html: job.text }} />
+          {job.text.length > 250 && <ApplyButton link={job.link} />}
+        </Body>
+      </Card>
+    </div>
+  </div>
 
 export default Job

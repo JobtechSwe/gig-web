@@ -28,6 +28,10 @@ const MapButton = styled(
   svg {
     transform: scale(1.3);
   }
+
+  @media(min-width: 768px) {
+    display: none;
+  }
 `
 
 export default MapButton

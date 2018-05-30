@@ -25,7 +25,7 @@ const SourceImage = ({ source }) =>
     className="img img-responsive"
     alt={sources[source].name}
     style={{
-      width: '50%'
+      maxHeight: '35px'
     }}
   />
 
