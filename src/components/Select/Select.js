@@ -19,7 +19,7 @@ class Select extends Component {
   }
 
   componentWillReceiveProps(props) {
-    if (!props.options.includes(opt => opt.value == this.state.selectedValue)) {
+    if (!props.options.find(opt => opt.value == this.state.selectedValue)) {
       this.setState({ selectedValue: this.getDefaultSelectedValue(props) })
     }
   }
