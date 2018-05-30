@@ -24,7 +24,6 @@ class SearchBox extends Component {
     super(props)
 
     this.state = {
-      selectExpanded: false,
       selectedOption: this.getSelectedOptionFromProps(props),
       options: this.getOptionsFromProps(props)
     }
@@ -38,28 +37,28 @@ class SearchBox extends Component {
   }
 
   getSelectedOptionFromProps(props) {
-    return props.profile && props.profile.ref ? 'ref' : 'recent'
+    return props.profile && props.profile.ref ? 'relevance' : 'recent'
   }
 
   getOptionsFromProps(props) {
     return (
       props.profile && props.profile.ref
-        ? [{ key: 'ref', value: 'Best match' }]
+        ? [{ key: 'relevance', value: 'Best match' }]
+        : []
+    ).concat(
+      props.hasPosition
+        ? [{ key: 'distance', value: 'Distance' }]
         : []
     ).concat([
-      { key: 'recent',    value: 'Recently posted' },
-      { key: 'distance',  value: 'Distance' },
-      { key: 'startDate', value: 'Start date' },
-      { key: 'duration',  value: 'Duration' },
+      { key: 'recentlyPosted',  value: 'Recently posted' },
+      { key: 'startDate',       value: 'Start date' },
+      { key: 'duration',        value: 'Duration' },
     ])
-  }
-
-  openSelect() {
-    this.setState({ selectExpanded: true })
   }
 
   onSelect(selected) {
     this.setState({ selectedOption: selected, selectExpanded: false })
+    this.props.setOrderByOption(selected)
   }
 
   clearProfile() {
@@ -77,7 +76,7 @@ class SearchBox extends Component {
         <Select onSelect={this.onSelect.bind(this)} prefix="<strong>Sort: </strong>" options={this.state.options} />
 
         {
-          this.state.selectedOption === 'ref' &&
+          this.state.selectedOption === 'relevance' &&
             <p className="pull-left" style={{ fontSize: '12px', color: 'white', fontWeight: 200, marginTop: '-6px' }}>
               The results are ordered to match with your {profile.ref} profile. <DisconnectButton profile={profile.ref} onClick={this.clearProfile.bind(this)} />
             </p>

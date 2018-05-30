@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import qs from 'query-string'
 
 import profile from '../../profile'
 
@@ -10,10 +11,14 @@ class IndexPage extends Component {
   constructor() {
     super()
 
+    const importedProfile = profile.get()
+
     this.state = {
       search: '',
       jobs: [],
-      profile: profile.get()
+      profile: importedProfile,
+      orderByOption: importedProfile && importedProfile.ref ? 'relevance' : 'recentlyPosted',
+      position: null,
     }
   }
 
@@ -27,10 +32,45 @@ class IndexPage extends Component {
   }
 
   componentDidMount() {
-    return fetch(`${process.env.REACT_APP_API_HOST}/jobs?page=1&pageLimit=1000`)
+    this.fetchJobs()
+    this.fetchLocation()
+  }
+
+  fetchJobs() {
+    return fetch(this.getJobSearchUrl())
       .then(response => response.json())
       .then(data => data.results.results)
       .then(jobs => this.setState({ jobs }))
+  }
+
+  getJobSearchUrl() {
+    const queryString = qs.stringify({
+      orderBy: this.state.orderByOption,
+      sort: 'asc',
+      ...(this.state.orderByOption === 'relevance' ? this.state.profile : {}),
+      ...(this.state.orderByOption === 'distance' ? this.state.position : {}),
+
+      // TODO: Implement pagination
+      page: 1,
+      pageLimit: 1000,
+    })
+
+    return `${process.env.REACT_APP_API_HOST}/jobs?${queryString}`
+  }
+
+  fetchLocation() {
+    window.navigator.geolocation.getCurrentPosition(
+      ({ coords }) => this.setState({
+        position: {
+          latitude: coords.latitude,
+          longitude: coords.longitude,
+        },
+      })
+    )
+  }
+
+  setOrderByOption(orderByOption) {
+    this.setState({ orderByOption }, this.fetchJobs.bind(this))
   }
 
   render() {
@@ -41,6 +81,8 @@ class IndexPage extends Component {
           clearProfile={this.clearProfile.bind(this)}
           onSearch={this.onSearch.bind(this)}
           search={this.state.search}
+          setOrderByOption={this.setOrderByOption.bind(this)}
+          hasPosition={!!this.state.position}
         />
         <div className="container">
           <SortedJobList jobs={this.state.jobs} search={this.state.search} />
