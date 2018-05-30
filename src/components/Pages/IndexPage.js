@@ -19,7 +19,7 @@ class IndexPage extends Component {
 
   clearProfile() {
     profile.clear()
-    this.setState({ profile: {} })
+    this.setState({ profile: null })
   }
 
   onSearch(event) {
@@ -37,7 +37,7 @@ class IndexPage extends Component {
     return (
       <Fragment>
         <SearchBox
-          profileSource={this.state.profile.ref}
+          profile={this.state.profile}
           clearProfile={this.clearProfile.bind(this)}
           onSearch={this.onSearch.bind(this)}
           search={this.state.search}

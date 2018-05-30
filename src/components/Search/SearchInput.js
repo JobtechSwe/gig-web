@@ -8,10 +8,10 @@ const SearchInput = styled(
     <div className="form-group" style={{ position: 'relative' }}>
       <input
         className={['form-control', className].join(' ')}
-        onChange={onChange}
+        // onChange={onChange}
         placeholder="Search by city or competence"
         type="text"
-        value={value}
+        // value={value}
       />
       <SearchIcon />
     </div>
