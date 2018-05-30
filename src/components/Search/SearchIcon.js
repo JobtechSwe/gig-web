@@ -9,9 +9,9 @@ const SearchIcon = styled(
 )`
   position: absolute;
   color: ${colors.blue};
-  top: 0.3em;
-  right: 0.3em;
-  font-size: 1.6em;
+  top: 0.4em;
+  right: 0.5em;
+  font-size: 1.4em;
 `
 
 export default SearchIcon

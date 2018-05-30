@@ -12,6 +12,8 @@ import colors from '../../colors'
 import JobCard from '../Jobs/JobCard'
 import Loader from '../Spinner/Loader'
 
+const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
+
 const CloseButton = styled(({ className }) => <Link to="/" className={className}><i className="i-times"></i></Link>)`
   position: absolute;
   top: 80px;
@@ -29,13 +31,22 @@ const Map = withScriptjs(withGoogleMap(({ lat, lng, jobs, onSelectJob, onMapClic
     defaultOptions={{ styles: mapStyles, disableDefaultUI: true }}
     onClick={onMapClick}
   >
-    {jobs.map(job =>
-      <Marker
-        key={job.id}
-        options={{ icon: markerIcon }}
-        position={{ lat: Number(job.latitude), lng: Number(job.longitude) }}
-        onClick={() => onSelectJob(job)}
-      />)}
+    <MarkerClusterer
+      onClick={() => {}}
+      averageCenter
+      enableRetinaIcons
+      gridSize={60}
+    >
+      {
+        jobs.map(job =>
+          <Marker
+            key={job.id}
+            options={{ icon: markerIcon }}
+            position={{ lat: Number(job.latitude), lng: Number(job.longitude) }}
+            onClick={() => onSelectJob(job)}
+          />)
+      }
+    </MarkerClusterer>
   </GoogleMap>
 ))
 

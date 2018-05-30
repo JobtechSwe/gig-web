@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 
+import profile from '../../profile'
+
 import MapButton from '../MapButton'
 import SearchBox from '../Search/SearchBox'
 import SortedJobList from '../Jobs/SortedJobList'
@@ -9,21 +11,15 @@ class IndexPage extends Component {
     super()
 
     this.state = {
-      search: this.getSearchFromQueryString(window.location.search),
-      jobs: []
+      search: '',
+      jobs: [],
+      profile: profile.get()
     }
   }
 
-  getSearchFromQueryString(queryString) {
-    return queryString
-      .replace('?', '')
-      .split('&')
-      .reduce((search, kv) => {
-        const parts = kv.split('=')
-        return parts.length === 2 && parts[0] === 'q'
-          ? parts[1].split('+').join(' ')
-          : search
-      }, '')
+  clearProfile() {
+    profile.clear()
+    this.setState({ profile: {} })
   }
 
   onSearch(event) {
@@ -40,7 +36,12 @@ class IndexPage extends Component {
   render() {
     return (
       <Fragment>
-        <SearchBox onSearch={this.onSearch.bind(this)} search={this.state.search} />
+        <SearchBox
+          profileSource={this.state.profile.ref}
+          clearProfile={this.clearProfile.bind(this)}
+          onSearch={this.onSearch.bind(this)}
+          search={this.state.search}
+        />
         <div className="container">
           <SortedJobList jobs={this.state.jobs} search={this.state.search} />
         </div>
