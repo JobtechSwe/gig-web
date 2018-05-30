@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 
 import MapButton from '../MapButton'
-import Search from '../Search'
+import SearchBox from '../Search/SearchBox'
 import SortedJobList from '../Jobs/SortedJobList'
 
 class IndexPage extends Component {
@@ -40,10 +40,10 @@ class IndexPage extends Component {
   render() {
     return (
       <Fragment>
-        <Search onSearch={this.onSearch.bind(this)} search={this.state.search} />
-          <div className="container">
-            <SortedJobList jobs={this.state.jobs} search={this.state.search} />
-          </div>
+        <SearchBox onSearch={this.onSearch.bind(this)} search={this.state.search} />
+        <div className="container">
+          <SortedJobList jobs={this.state.jobs} search={this.state.search} />
+        </div>
         <MapButton />
       </Fragment>
     )
