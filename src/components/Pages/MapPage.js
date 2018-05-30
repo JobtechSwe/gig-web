@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { withGoogleMap, withScriptjs, GoogleMap, Marker } from 'react-google-maps'
 
 import mapStyles from '../../resources/map.json'
@@ -14,20 +14,10 @@ import Title from '../Card/Title'
 import Header from '../Card/Header'
 import Preamble from '../Card/Preamble'
 import SourceImage from '../Card/SourceImage'
-
+import Spinner from '../Spinner'
 import Duration from '../Card/Icons/Duration'
 import Location from '../Card/Icons/Location'
 import IconContainer from '../Card/Icons/IconContainer'
-
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-`;
 
 const CloseButton = styled(({ className }) => <Link to="/" className={className}><i className="i-times"></i> Close</Link>)`
   position: absolute;
@@ -37,18 +27,11 @@ const CloseButton = styled(({ className }) => <Link to="/" className={className}
   z-index: 100000;
 `
 
-const Spinner = styled.div`
-  height: 50px;
-  width: 50px;
-  border: 3px solid ${colors.gray50};
-  border-left-color: transparent;
-  border-bottom-color: transparent;
-  border-radius: 2000px;
-  animation: ${rotate} 500ms linear infinite;
-`
-
 const Loader = styled(
-  ({ className }) => <div className={className}><Spinner /></div>
+  ({ className }) =>
+    <div className={className}>
+      <Spinner color={colors.gray50} size={50} />
+     </div>
 )`
   height: calc(100vh - 73px);
   display: flex;
