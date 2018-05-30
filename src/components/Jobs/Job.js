@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import dayjs from 'dayjs'
 
 import ApplyButton from './ApplyButton'
 import Body from '../Card/Body'
@@ -11,8 +10,7 @@ import Header from '../Card/Header'
 import MapIcon from '../Icons/MapIcon'
 import Title from '../Card/Title'
 import SourceImage from '../Card/SourceImage'
-
-const DATE_FORMAT = 'D MMM'
+import { formatDateRange, formatDate } from '../../date';
 
 const Section = styled.div`
   margin: 1em 0;
@@ -29,10 +27,10 @@ const Job = ({ job }) =>
         <MapIcon padRight /> {job.address}
       </Section>
       <Section>
-        <CalendarIcon padRight /> {dayjs(job.startDate).format(DATE_FORMAT)} - {dayjs(job.endDate).format(DATE_FORMAT)}
+        <CalendarIcon padRight /> {formatDateRange(job.startDate, job.endDate)}
       </Section>
       <Section>
-        <ClockIcon padRight /> Apply before {dayjs(job.endDate).format(DATE_FORMAT)}
+        <ClockIcon padRight /> Apply before {formatDate(job.endDate)}
       </Section>
 
       <ApplyButton link={job.link} />
