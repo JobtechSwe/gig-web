@@ -31,14 +31,10 @@ class SearchBox extends Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log('props', props)
-
     this.setState({
       selectedOption: this.getSelectedOptionFromProps(props),
       options: this.getOptionsFromProps(props)
     })
-
-    setTimeout(() => console.log('state', this.state), 1500)
   }
 
   getSelectedOptionFromProps(props) {
