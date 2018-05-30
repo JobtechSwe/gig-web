@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { withGoogleMap, withScriptjs, GoogleMap, Marker } from 'react-google-maps'
+import { CSSTransition } from 'react-transition-group'
 
+import '../../animations.css'
 import mapStyles from '../../resources/map.json'
 import markerIcon from '../../resources/img/marker.svg'
-
 import colors from '../../colors'
 
 import JobCard from '../Jobs/JobCard'
@@ -38,7 +39,7 @@ const Map = withScriptjs(withGoogleMap(({ lat, lng, jobs, onSelectJob, onMapClic
 
 const SelectedJobCard = styled(({ className, job }) =>
   <div className={className}>
-    <JobCard job={job} sourceImagePosition="header">
+    {job && <JobCard job={job} sourceImagePosition="header">
       <Link
         to={`/jobs/${job.id}`}
         className="btn btn-default btn-secondary btn-block"
@@ -51,7 +52,7 @@ const SelectedJobCard = styled(({ className, job }) =>
       >
         Read more about this job
       </Link>
-    </JobCard>
+    </JobCard>}
   </div>
 )`
   position: absolute;
@@ -86,11 +87,11 @@ class MapPage extends Component {
   }
 
   selectJob(job) {
-    this.setState({ selectedJob: job })
+    this.setState({ showSelectedJob: true, selectedJob: job })
   }
 
   unselectJob() {
-    this.setState({ selectedJob: undefined })
+    this.setState({ showSelectedJob: false })
   }
 
   render() {
@@ -131,7 +132,15 @@ class MapPage extends Component {
           containerElement={<div style={{ position: 'relative', height: `calc(100vh - ${headerHeight}px)` }} />}
           mapElement={<div style={{ position: 'relative', height: `calc(100vh - ${headerHeight}px)` }} />}
         />
-        {this.state.selectedJob && <SelectedJobCard job={this.state.selectedJob} />}
+        <CSSTransition
+          in={this.state.showSelectedJob}
+          timeout={300}
+          classNames="job-card"
+          unmountOnExit
+          onExited={() => this.setState({ selectedJob: undefined })}
+        >
+          <SelectedJobCard job={this.state.selectedJob} />
+        </CSSTransition>
       </div>
     )
   }
