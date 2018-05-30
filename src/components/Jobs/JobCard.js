@@ -6,11 +6,11 @@ import Title from '../Card/Title'
 import Footer from '../Card/Footer'
 import Header from '../Card/Header'
 import Preamble from '../Card/Preamble'
-import SourceImage from '../Card/SourceImage'
+import SourceImage from './SourceImage'
 
-import Duration from '../Card/Icons/Duration'
-import Location from '../Card/Icons/Location'
-import IconContainer from '../Card/Icons/IconContainer'
+import Duration from './Duration'
+import Location from './Location'
+import HorizontalIconContainer from '../Icons/HorizontalIconContainer'
 
 const cleanPreamble = preamble =>
   preamble
@@ -38,10 +38,10 @@ const JobCard = ({ job, children, sourceImagePosition = 'footer' }) =>
     <Body>
       <Title>{job.title}</Title>
       <Preamble dangerouslySetInnerHTML={{ __html: cleanPreamble(firstSentence(job.preamble)) }} />
-      <IconContainer>
+      <HorizontalIconContainer>
         <Location location={extractCityFromAddress(job.address)} />
         <Duration start={job.startDate} end={job.endDate} />
-      </IconContainer>
+      </HorizontalIconContainer>
       {children}
     </Body>
     {

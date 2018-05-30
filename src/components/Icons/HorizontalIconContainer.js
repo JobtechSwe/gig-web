@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-const IconContainer = styled.div`
+const HorizontalIconContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `
 
-export default IconContainer
+export default HorizontalIconContainer

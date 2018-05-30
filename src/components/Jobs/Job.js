@@ -9,7 +9,7 @@ import ClockIcon from '../Icons/ClockIcon'
 import Header from '../Card/Header'
 import MapIcon from '../Icons/MapIcon'
 import Title from '../Card/Title'
-import SourceImage from '../Card/SourceImage'
+import SourceImage from './SourceImage'
 import { formatDateRange, formatDate } from '../../date';
 
 const Section = styled.div`

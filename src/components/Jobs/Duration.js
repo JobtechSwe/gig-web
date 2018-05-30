@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import colors from '../../../colors'
-import CalendarIcon from '../../Icons/CalendarIcon'
-import { formatDateRange } from '../../../date';
+import colors from '../../colors'
+import CalendarIcon from '../Icons/CalendarIcon'
+import { formatDateRange } from '../../date';
 
 const Duration = styled(
   ({ className, start, end }) =>

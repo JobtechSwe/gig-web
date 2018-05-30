@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import MapIcon from '../../Icons/MapIcon'
-import colors from '../../../colors'
+import MapIcon from '../Icons/MapIcon'
+import colors from '../../colors'
 
-const LocationIcon = styled(({ className, location }) =>
+const Location = styled(({ className, location }) =>
   <div>
     <MapIcon className={className} fill={colors.blue} />
     <span style={{ color: colors.gray90 }}>{location}</span>
@@ -14,4 +14,4 @@ const LocationIcon = styled(({ className, location }) =>
   margin-right: 0.4em;
 `
 
-export default LocationIcon
+export default Location
