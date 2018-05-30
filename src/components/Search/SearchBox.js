@@ -44,7 +44,7 @@ class SearchBox extends Component {
   getOptionsFromProps(props) {
     return (
       props.profile && props.profile.ref
-        ? [{ key: 'ref', value: `${props.profile.ref} profile` }]
+        ? [{ key: 'ref', value: 'Best match' }]
         : []
     ).concat([
       { key: 'recent',    value: 'Recently posted' },
