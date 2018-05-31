@@ -21,9 +21,9 @@ const sources = {
 
 const SourceImage = ({ source }) =>
   <img
-    src={sources[source].image}
+    src={sources.hasOwnProperty(source) ? sources[source].image : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'}
     className="img img-responsive"
-    alt={sources[source].name}
+    alt={sources.hasOwnProperty(source) ? sources[source].name : 'blank'}
     style={{
       maxHeight: '35px'
     }}
