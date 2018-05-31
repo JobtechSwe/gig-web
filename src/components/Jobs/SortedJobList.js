@@ -27,7 +27,7 @@ const sortJobs = (jobs, search) => {
     })
 }
 
-const SortedJobList = ({ jobs, search }) => {
+const SortedJobList = ({ jobs = [], search = '' }) => {
   const sortedJobs = sortJobs(jobs, search)
 
   return (

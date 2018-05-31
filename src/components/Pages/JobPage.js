@@ -18,7 +18,7 @@ class JobPage extends Component {
 
     fetch(`${process.env.REACT_APP_API_HOST}/jobs?page=1&pageLimit=1000`)
       .then(response => response.json())
-      .then(data => data.results.results)
+      .then(data => data.results)
       .then(jobs => jobs.find(job => job.id === match.params.jobId))
       .then(job => this.setState({ job }))
   }

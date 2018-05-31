@@ -100,7 +100,7 @@ class MapPage extends Component {
 
     fetch(`${process.env.REACT_APP_API_HOST}/jobs?page=1&pageLimit=1000`)
       .then(response => response.json())
-      .then(data => data.results.results)
+      .then(data => data.results)
       .then(jobs => this.setState({ jobs }))
   }
 

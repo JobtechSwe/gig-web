@@ -39,7 +39,7 @@ class IndexPage extends Component {
   fetchJobs() {
     return fetch(this.getJobSearchUrl())
       .then(response => response.json())
-      .then(data => data.results.results)
+      .then(data => data.results)
       .then(jobs => this.setState({ jobs }))
   }
 
