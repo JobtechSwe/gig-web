@@ -45,12 +45,13 @@ class SearchBox extends Component {
       props.profile && props.profile.ref
         ? [{ key: 'relevance', value: 'Best match' }]
         : []
-    ).concat(
+    ).concat([
+      { key: 'recentlyPosted',  value: 'Recently posted' },
+    ]).concat(
       props.hasPosition
         ? [{ key: 'distance', value: 'Distance' }]
         : []
     ).concat([
-      { key: 'recentlyPosted',  value: 'Recently posted' },
       { key: 'startDate',       value: 'Start date' },
       { key: 'duration',        value: 'Duration' },
     ])
