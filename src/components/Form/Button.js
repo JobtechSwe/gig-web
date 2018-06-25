@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import colors from '../../colors'
-
 const Button = styled((props) =>
   <button
     className={[
