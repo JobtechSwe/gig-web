@@ -24,6 +24,8 @@ const Header = styled(({ className }) =>
 )`
   padding: 1em;
   margin-bottom: 0;
+  border: none;
+  background: #FFF;
 `
 
 export default Header

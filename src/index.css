@@ -1,10 +1,51 @@
 @import 'https://www.arbetsformedlingen.se/etjanst/naf_ui_framework/latest/naf_ui_framework.min.css';
 
 body {
-  background-color: #e5e5e5;
+  background-color: #F9F9F9;
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
+}
+
+a, body a {
+  color: #1616b2;
+  font-weight: 600;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #000;
+}
+
+.container {
+  width: 95%;
+}
+
+.container.container-narrow {
+  width: 90%;
+}
+
+.btn.btn-primary {
+  background: #00005a;
+  border-color: #00005a;
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:active,
+.btn.btn-primary:focus {
+  background: #00003d;
+  border-color: #00003d;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {

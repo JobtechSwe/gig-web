@@ -7,7 +7,7 @@ import MapButton from '../MapButton'
 import SearchBox from '../Search/SearchBox'
 import SortedJobList from '../Jobs/SortedJobList'
 
-class IndexPage extends Component {
+class JobListPage extends Component {
   constructor() {
     super()
 
@@ -93,4 +93,4 @@ class IndexPage extends Component {
   }
 }
 
-export default IndexPage
+export default JobListPage
