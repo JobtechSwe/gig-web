@@ -5,10 +5,12 @@ import colors from '../../colors'
 import afLogoImage from '../../resources/img/af.png'
 
 const GigLogo = styled(
-  ({ className }) => <span className={className}>GIG </span>
+  ({ className }) => <span className={className}>GIG</span>
 )`
   color: ${colors.primary};
-  font-size: 1.8em;
+  font-size: 28px;
+  line-height: 38px;
+  display: inline-block;
   font-weight: 700;
   vertical-align: sub;
 `
@@ -19,7 +21,7 @@ const Separator = styled(
   display: inline-block;
   width: 1px;
   height: 1.5em;
-  margin: 0 0.85em 0 0.5em;
+  margin: 0 0.6em 0 0.6em;
   vertical-align: text-top;
   background: ${colors.gray30};
 `
@@ -33,7 +35,7 @@ const AFLogo = styled(
     />
 )`
   width: auto;
-  max-height: 30px;
+  max-height: 24px;
 `
 
 const Logo = ({ className }) =>
