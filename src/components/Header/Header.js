@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Logo from './Logo'
 import Container from '../Common/Container'
 import ClickableMenuToggler from '../../containers/Header/ClickableMenuToggler'
+import HeaderMenu from '../Menu/HeaderMenu'
 
 const Header = styled(({ className }) =>
   <div className={'navbar navbar-default ' + className}>
@@ -12,7 +13,8 @@ const Header = styled(({ className }) =>
         <div className="navbar-header">
           <Logo />
         </div>
-        <ClickableMenuToggler />
+        <ClickableMenuToggler className="visible-xs visible-sm" />
+        <HeaderMenu />
       </div>
     </Container>
   </div>
