@@ -7,7 +7,8 @@ import Button from '../Form/Button'
 import Separator from '../Common/Separator'
 
 const PositionedPeopleImage = styled(PeopleImage)`
-  text-align: center;
+  display: block;
+  margin: 0 auto;
   margin-bottom: 2em;
 `
 
