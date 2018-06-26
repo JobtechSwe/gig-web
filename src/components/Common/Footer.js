@@ -11,7 +11,9 @@ const Footer = styled(({ className, smallLogo }) =>
     <Container>
       <h2>About GIG</h2>
       <p>Praesent finibus risus dictum, sollicitudin arcu sed, faucibus ex. Etiam euismod porttitor hendrerit. Vestibulum ut faucibus nunc, ut venenatis mi. Ut consectetur turpis eget est auctor, eget bibendum mi porttitor. Nulla ut lectus quis ipsum malesuada euismod. In vel justo sapien. Aliquam erat volutpat. Morbi eget posuere risus, id aliquet sapien.</p>
-      <AFLogo small={smallLogo} />
+      <a href="https://www.arbetsformedlingen.se/">
+        <AFLogo small={smallLogo} />
+      </a>
     </Container>
   </div>
 )`
