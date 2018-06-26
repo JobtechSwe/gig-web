@@ -1,3 +1,4 @@
+/* Job card */
 .job-card-enter {
   opacity: 0.01;
   transform: translateY(50%);
@@ -18,4 +19,43 @@
   opacity: 0;
   transform: translateY(50%);
   transition: all 200ms ease-in;
+}
+
+/* Side Bar Backdrop */
+.side-bar-backdrop-enter {
+  opacity: 0.01;
+}
+
+.side-bar-backdrop-enter-active {
+  opacity: 1;
+  transition: all 150ms ease-out;
+}
+
+.side-bar-backdrop-exit {
+  opacity: 1;
+}
+
+.side-bar-backdrop-exit-active {
+  opacity: 0;
+  transition: all 150ms ease-in;
+}
+
+/* Side Bar Menu */
+
+.side-bar-menu-enter {
+  transform: translateX(100%);
+}
+
+.side-bar-menu-enter-active {
+  transform: translateX(0%);
+  transition: all 150ms ease-out;
+}
+
+.side-bar-menu-exit {
+  transform: translateX(0%);
+}
+
+.side-bar-menu-exit-active {
+  transform: translateX(100%);
+  transition: all 150ms ease-in;
 }
