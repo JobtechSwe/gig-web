@@ -11,9 +11,7 @@ const Header = styled(({ className }) =>
   <div className={'navbar navbar-default ' + className}>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div className="navbar-header">
-          <Link to="/">
-            <Logo />
-          </Link>
+          <Logo />
         </div>
         <ClickableMenuToggler />
       </div>
@@ -25,6 +23,7 @@ const Header = styled(({ className }) =>
   </div>
 )`
   padding: 1em 1.5em;
+  padding-top: calc(1.5em + 3.5px);
   margin-bottom: 0;
   border: none;
   background: #FFF;

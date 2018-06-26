@@ -1,15 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
+import AFLogo from '../Common/AFLogo'
 import colors from '../../colors'
-import afLogoImage from '../../resources/img/af.png'
 
 const GigLogo = styled(
   ({ className }) => <span className={className}>GIG</span>
 )`
   color: ${colors.primary};
   font-size: 28px;
-  line-height: 38px;
+  line-height: 20px;
   display: inline-block;
   font-weight: 700;
   vertical-align: sub;
@@ -26,24 +27,16 @@ const Separator = styled(
   background: ${colors.gray30};
 `
 
-const AFLogo = styled(
+const Logo = styled(
   ({ className }) =>
-    <img
-      className={className}
-      src={afLogoImage}
-      alt="Arbetsförmedlingen"
-    />
-)`
-  width: auto;
-  max-height: 24px;
-`
-
-const Logo = ({ className }) =>
-  <div>
-    <GigLogo />
+  <div className={className}>
+    <Link to="/"><GigLogo /></Link>
     <Separator />
-    <AFLogo />
+    <a href="https://www.arbetsformedlingen.se/"><AFLogo small color="black" /></a>
   </div>
+)`
+  display: flex;
+`
 
 export default styled(Logo)`
 
