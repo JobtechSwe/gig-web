@@ -1,14 +1,10 @@
 import React, { Fragment } from 'react'
-import styled from 'styled-components'
 
 import Container from '../Common/Container'
 import Footer from '../Common/Footer'
 import Intro from '../Home/Intro'
 import EmployerInfo from '../Home/EmployerInfo'
-
-const InfoBlock = styled.div`
-  margin: 5em 0;
-`
+import InfoBlock from '../Common/InfoBlock'
 
 const HomePage = () => (
   <Fragment>
