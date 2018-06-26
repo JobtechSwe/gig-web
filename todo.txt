@@ -1,0 +1,2 @@
+* Introduce Redux for Map/Jobs
+* Clean up MapPage and break out components

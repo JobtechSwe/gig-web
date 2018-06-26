@@ -3,7 +3,7 @@ import SideBarMenu from '../../components/Menu/SideBarMenu'
 import { hideMenu } from '../../actions/menu'
 
 const mapStateToProps = ({ menu }) => ({
-  show: menu.open
+  show: menu.show
 })
 
 const mapDispatchToProps = (dispatch) => ({

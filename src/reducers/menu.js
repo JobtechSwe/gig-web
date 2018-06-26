@@ -1,7 +1,7 @@
 import { SHOW_SIDE_BAR_MENU, HIDE_SIDE_BAR_MENU } from '../actions/menu'
 
 const initialState = {
-  open: false
+  show: false
 }
 
 const menuReducer = (state = initialState, action) => {
@@ -9,13 +9,13 @@ const menuReducer = (state = initialState, action) => {
     case SHOW_SIDE_BAR_MENU:
       return {
         ...state,
-        open: true
+        show: true
       }
 
     case HIDE_SIDE_BAR_MENU:
       return {
         ...state,
-        open: false
+        show: false
       }
 
     default:

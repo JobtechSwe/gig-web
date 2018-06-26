@@ -9,6 +9,7 @@ const Backdrop = styled.div`
   width: 100vw;
   top: 0;
   left: 0;
+  z-index: 10000;
 `
 
 
@@ -35,20 +36,17 @@ const Menu = styled(
   width: 90%;
   top: 0;
   right: 0;
+  z-index: 10000;
 `
 
-const SideBarMenu = styled(
-  ({ className, show, onCloseClick }) =>
-    <div className={className}>
-      <CSSTransition in={show} timeout={300} classNames="side-bar-backdrop" unmountOnExit>
-        <Backdrop onClick={onCloseClick} />
-      </CSSTransition>
-      <CSSTransition in={show} timeout={300} classNames="side-bar-menu" unmountOnExit>
-        <Menu onCloseClick={onCloseClick} />
-      </CSSTransition>
-    </div>
-)`
-
-`
+const SideBarMenu = ({ className, show, onCloseClick }) =>
+  <div className={className}>
+    <CSSTransition in={show} timeout={300} classNames="side-bar-backdrop" unmountOnExit>
+      <Backdrop onClick={onCloseClick} />
+    </CSSTransition>
+    <CSSTransition in={show} timeout={300} classNames="side-bar-menu" unmountOnExit>
+      <Menu onCloseClick={onCloseClick} />
+    </CSSTransition>
+  </div>
 
 export default SideBarMenu
