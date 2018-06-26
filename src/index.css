@@ -60,12 +60,18 @@ h2 {
   }
 }
 
-.container {
-  width: 95%;
+.btn-lg {
+  font-size: 16px;
 }
 
-.container.container-narrow {
-  width: 90%;
+@media(max-width: 767px) {
+  .container {
+    width: 95%;
+  }
+
+  .container.container-narrow {
+    width: 90%;
+  }
 }
 
 .btn.btn-primary {

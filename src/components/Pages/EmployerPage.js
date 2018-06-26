@@ -18,13 +18,13 @@ const LinkIcon = styled(
     </svg>
 )`
   display: inline-block;
-  margin-right: 4px;
+  margin-right: 8px;
 `
 
 const PartnerLink = styled(
   ({ className, href, children }) =>
     <a className={className} href={href} target="_blank">
-      <LinkIcon /> {children}
+      <LinkIcon />{children}
     </a>
 )`
   font-size: 18px;
@@ -38,28 +38,29 @@ const EmployerPage = () => (
     </Container>
     <div style={{ backgroundColor: 'white' }}>
       <Container narrow>
-        <InfoBlock>
-          <h2>Our partners</h2>
-          <p>Ut consectetur turpis eget est auctor, eget bibendum mi porttitor. Nulla ut lectus quis ipsum malesuada euismod. In vel justo sapien. Aliquam erat volutpat. Morbi eget posuere risus, id aliquet sapien.</p>
-        </InfoBlock>
-        <InfoBlock>
-          <Gigstr />
-          <p>Ut consectetur turpis eget est auctor, eget bibendum mi porttitor. Nulla ut lectus quis ipsum malesuada euismod.</p>
-          <PartnerLink href="http://www.gigstr.com/">gigstr.se</PartnerLink>
-        </InfoBlock>
-        <InfoBlock>
-          <JustArrived />
-          <p>Ut consectetur turpis eget est auctor, eget bibendum mi porttitor. Nulla ut lectus quis ipsum malesuada euismod.</p>
-          <PartnerLink href="https://justarrived.se/">justarrived.se</PartnerLink>
-        </InfoBlock>
-        <InfoBlock>
-          <Taskrunner />
-          <p>Ut consectetur turpis eget est auctor, eget bibendum mi porttitor. Nulla ut lectus quis ipsum malesuada euismod.</p>
-          <PartnerLink href="https://www.taskrunner.se/">taskrunner.se</PartnerLink>
-        </InfoBlock>
-      </Container>
-      <Container>
-
+        <div className="row">
+          <div className="col-md-7">
+            <InfoBlock>
+              <h2>Our partners</h2>
+              <p>Ut consectetur turpis eget est auctor, eget bibendum mi porttitor. Nulla ut lectus quis ipsum malesuada euismod. In vel justo sapien. Aliquam erat volutpat. Morbi eget posuere risus, id aliquet sapien.</p>
+            </InfoBlock>
+            <InfoBlock>
+              <Gigstr />
+              <p>Ut consectetur turpis eget est auctor, eget bibendum mi porttitor. Nulla ut lectus quis ipsum malesuada euismod.</p>
+              <PartnerLink href="http://www.gigstr.com/">gigstr.se</PartnerLink>
+            </InfoBlock>
+            <InfoBlock>
+              <JustArrived />
+              <p>Ut consectetur turpis eget est auctor, eget bibendum mi porttitor. Nulla ut lectus quis ipsum malesuada euismod.</p>
+              <PartnerLink href="https://justarrived.se/">justarrived.se</PartnerLink>
+            </InfoBlock>
+            <InfoBlock>
+              <Taskrunner />
+              <p>Ut consectetur turpis eget est auctor, eget bibendum mi porttitor. Nulla ut lectus quis ipsum malesuada euismod.</p>
+              <PartnerLink href="https://www.taskrunner.se/">taskrunner.se</PartnerLink>
+            </InfoBlock>
+          </div>
+        </div>
       </Container>
       <Footer />
     </div>
