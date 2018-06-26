@@ -17,7 +17,7 @@ const App = () =>
       <HideableSideBarMenu />
       <Route exact path="/" component={HomePage} />
       <Route exact path="/employers" component={EmployerPage} />
-      <Route path="/jobs" component={JobListPage} />
+      <Route exact path="/jobs" component={JobListPage} />
       <Route path="/jobs/:jobId" component={JobPage} />
       <Route path="/map" component={MapPage} />
     </Fragment>

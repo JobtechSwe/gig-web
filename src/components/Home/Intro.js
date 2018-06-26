@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import PeopleImage from './PeopleImage'
-import Button from '../Form/Button'
 
 const PositionedPeopleImage = styled(PeopleImage)`
   display: block;
@@ -25,8 +24,8 @@ const Intro = styled(
         <div className="col-md-5 col-md-pull-7">
           <h1>Find jobs in Sweden!</h1>
           <p style={{ marginBottom: '3em' }}>Get matched with gig jobs based on your work experience, competence and education!</p>
-          <Link to="/jobs">
-            <Button large block>Find jobs</Button>
+          <Link to="/jobs" className="btn btn-primary btn-block btn-lg">
+            Find jobs
           </Link>
         </div>
       </div>

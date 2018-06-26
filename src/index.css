@@ -12,6 +12,10 @@ a, body a {
   font-weight: 600;
 }
 
+a:hover, body a:hover {
+  color: #1616b2;
+}
+
 .normal, a, body a, p {
   font-size: 16px;
 }
@@ -60,10 +64,6 @@ h2 {
   }
 }
 
-.btn-lg {
-  font-size: 16px;
-}
-
 @media(max-width: 767px) {
   .container {
     width: 95%;
@@ -74,16 +74,25 @@ h2 {
   }
 }
 
+.btn {
+  text-transform: none;
+  font-weight: normal;
+}
+
 .btn.btn-primary {
   background: #00005a;
   border-color: #00005a;
 }
 
 .btn.btn-primary:hover,
-.btn.btn-primary:active,
-.btn.btn-primary:focus {
-  background: #00003d;
-  border-color: #00003d;
+.btn.btn-primary:focus,
+.btn.btn-primary:active {
+  background: #1616b2;
+  border-color: #1616b2;
+}
+
+.btn-lg {
+  font-size: 16px;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
