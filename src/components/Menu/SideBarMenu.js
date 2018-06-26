@@ -1,9 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
+import { Link } from 'react-router-dom'
+
+import colors from '../../colors'
+
+import Footer from '../Common/Footer'
 
 const Backdrop = styled.div`
-  position: absolute;
+  position: fixed;
   background: rgba(0, 0, 0, 0.4);
   height: 100vh;
   width: 100vw;
@@ -11,7 +16,6 @@ const Backdrop = styled.div`
   left: 0;
   z-index: 10000;
 `
-
 
 const CloseMenuButton = ({ onClick, className }) =>
   <svg className={className} onClick={onClick} width="38" height="39" viewBox="0 0 38 39" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,19 +28,45 @@ const PositionedCloseMenuButton = styled(CloseMenuButton)`
   right: 14px;
 `
 
+const SideBarMenuItemList = styled.div`
+  margin-top: 50px;
+  border-top: solid 1px ${colors.gray20};
+`
+
+const SideBarMenuItem = styled(
+  ({ link, className, children, onClick }) => <Link onClick={onClick} className={className} to={link}>{children}</Link>
+)`
+  display: block;
+  border-bottom: solid 1px ${colors.gray20};
+  font-size: 18px;
+  padding: 0.6em 1em;
+  color: black;
+  font-weight: normal;
+`
+
+const SideBarMenuFooter = () => <Footer smallLogo />
+
 const Menu = styled(
   ({ className, onCloseClick }) =>
     <div className={className}>
       <PositionedCloseMenuButton onClick={onCloseClick} />
+      <SideBarMenuItemList>
+        <SideBarMenuItem onClick={onCloseClick} link="/">For job seekers</SideBarMenuItem>
+        <SideBarMenuItem onClick={onCloseClick} link="/employers">For employers</SideBarMenuItem>
+      </SideBarMenuItemList>
+      <SideBarMenuFooter />
     </div>
 )`
   height: 100vh;
   background: white;
-  position: absolute;
-  width: 90%;
+  position: fixed;
+  width: 70%;
   top: 0;
   right: 0;
   z-index: 10000;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 `
 
 const SideBarMenu = ({ className, show, onCloseClick }) =>
