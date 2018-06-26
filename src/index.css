@@ -12,8 +12,13 @@ a, body a {
   font-weight: 600;
 }
 
-h1,h2,h3,h4,h5,h6 {
+.normal, a, body a, p {
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 
 h1 {
@@ -22,10 +27,37 @@ h1 {
   color: #333;
 }
 
+h1:after {
+  background-color: #00005a;
+  content: "";
+  display: block;
+  height: 7px;
+  margin-top: 30px;
+  margin-bottom: 35px;
+  width: 115px;
+}
+
+@media (min-width: 768px) {
+  .h1:after, h1:after {
+    width: 230px;
+    height: 10px;
+  }
+}
+
 h2 {
   font-size: 22px;
   font-weight: 600;
   color: #000;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
 }
 
 .container {
