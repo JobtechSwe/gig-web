@@ -12,7 +12,11 @@ import './animations.css'
 import ProfileAwareApp from './containers/ProfileAwareApp'
 import rootReducer from './reducers'
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(
+  rootReducer,
+  process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(thunk)
+)
 
 store.subscribe(() => {
   const state = store.getState()

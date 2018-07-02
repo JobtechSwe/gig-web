@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchJobs: () => {
-    dispatch(fetchJobs(`${process.env.REACT_APP_API_HOST}/jobs`))
+    dispatch(fetchJobs())
   }
 })
 

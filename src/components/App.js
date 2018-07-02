@@ -6,7 +6,7 @@ import HideableSideBarMenu from '../containers/Menu/HideableSideBarMenu'
 
 import EmployerPage from './Pages/EmployerPage'
 import HomePage from './Pages/HomePage'
-import JobListPageWithProfile from '../containers/Jobs/JobListPageWithProfile'
+import JobListPage from './Pages/JobListPage'
 import JobPage from './Pages/JobPage'
 import MapPage from './Pages/MapPage'
 
@@ -30,7 +30,7 @@ class App extends Component {
           <HideableSideBarMenu />
           <Route exact path="/" component={HomePage} />
           <Route exact path="/employers" component={EmployerPage} />
-          <Route exact path="/jobs" component={JobListPageWithProfile} />
+          <Route exact path="/jobs" component={JobListPage} />
           <Route path="/jobs/:jobId" component={JobPage} />
           <Route path="/map" component={MapPage} />
         </Fragment>

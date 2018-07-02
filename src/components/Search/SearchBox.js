@@ -20,66 +20,41 @@ const DisconnectButton = styled(
 `
 
 class SearchBox extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      selectedOption: this.getSelectedOptionFromProps(props),
-      options: this.getOptionsFromProps(props)
-    }
+  componentDidMount() {
+    this.props.setDefaultSortingOption()
+    this.props.fetchPosition()
   }
 
-  componentWillReceiveProps(props) {
-    this.setState({
-      selectedOption: this.getSelectedOptionFromProps(props),
-      options: this.getOptionsFromProps(props)
-    })
+  getSearchOptions() {
+    const { profile, hasLocation } = this.props
+
+    return [
+      { key: 'relevance', value: 'Best match', display: Boolean(profile && profile.ref) },
+      { key: 'recentlyPosted', value: 'Recently posted' },
+      { key: 'distance', value: 'Distance', display: hasLocation },
+      { key: 'startDate', value: 'Start date' },
+      { key: 'duration', value: 'Duration' },
+    ]
   }
 
-  getSelectedOptionFromProps(props) {
-    return props.profile && props.profile.ref ? 'relevance' : 'recent'
-  }
-
-  getOptionsFromProps(props) {
-    return (
-      props.profile && props.profile.ref
-        ? [{ key: 'relevance', value: 'Best match' }]
-        : []
-    ).concat([
-      { key: 'recentlyPosted',  value: 'Recently posted' },
-    ]).concat(
-      props.hasPosition
-        ? [{ key: 'distance', value: 'Distance' }]
-        : []
-    ).concat([
-      { key: 'startDate',       value: 'Start date' },
-      { key: 'duration',        value: 'Duration' },
-    ])
-  }
-
-  onSelect(selected) {
-    this.setState({ selectedOption: selected, selectExpanded: false })
-    this.props.setOrderByOption(selected)
-  }
-
-  clearProfile() {
-    this.props.clearProfile()
+  shouldDisplayProfileDisconnect() {
+    return this.props.selectedOption === 'relevance' && this.props.profile && this.props.profile.ref
   }
 
   render() {
-    const { className, search, onSearch, profile } = this.props
+    const { className, search, onSearch, profile, setSortingOption, clearProfile } = this.props
 
     return (
       <div className={[className].join(' ')}>
       <div className="container">
         <SearchInput value={search} onChange={onSearch} />
 
-        <Select onSelect={this.onSelect.bind(this)} prefix="<strong>Sort: </strong>" options={this.state.options} />
+        <Select onSelect={setSortingOption} prefix="<strong>Sort: </strong>" options={this.getSearchOptions()} />
 
         {
-          this.state.selectedOption === 'relevance' &&
+          this.shouldDisplayProfileDisconnect() &&
             <p className="pull-left" style={{ fontSize: '12px', color: 'white', fontWeight: 200, marginTop: '-6px' }}>
-              The results are ordered to match with your {profile.ref} profile. <DisconnectButton profile={profile.ref} onClick={this.clearProfile.bind(this)} />
+              The results are ordered to match with your {profile.ref} profile. <DisconnectButton profile={profile.ref} onClick={clearProfile} />
             </p>
         }
       </div>

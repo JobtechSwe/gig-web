@@ -15,11 +15,19 @@ class Select extends Component {
   }
 
   getDefaultSelectedValue(props) {
-    return Object.values(props.options)[0].value
+    const visibleOptions = props.options.filter(option => option.display !== false)
+
+    if (visibleOptions.length === 0) {
+      return ''
+    }
+
+    return visibleOptions[0].value
   }
 
   componentWillReceiveProps(props) {
-    if (!props.options.find(opt => opt.value === this.state.selectedValue)) {
+    const currentSelection = props.options.find(opt => opt.value === this.state.selectedValue)
+
+    if (!currentSelection || currentSelection.display === false) {
       this.setState({ selectedValue: this.getDefaultSelectedValue(props) })
     }
   }

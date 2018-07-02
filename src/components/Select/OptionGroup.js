@@ -16,9 +16,13 @@ class OptionGroup extends Component {
 
     return (
       <div className={className}>
-        {options.map(option =>
-          <Option key={option.key} onClick={this.onClick.bind(this, option)}>{option.value}</Option>
-        )}
+        {
+          options
+            .filter(option => option.display !== false)
+            .map(option =>
+              <Option key={option.key} onClick={this.onClick.bind(this, option)}>{option.value}</Option>
+            )
+        }
       </div>
     )
   }
