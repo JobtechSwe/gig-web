@@ -1,30 +1,23 @@
 import React, { Component, Fragment } from 'react'
 import qs from 'query-string'
 
-import profile from '../../profile'
-
 import MapButton from '../MapButton'
 import SearchBox from '../Search/SearchBox'
-import SortedJobList from '../Jobs/SortedJobList'
+import OrderedJobList from '../../containers/Jobs/OrderedJobList'
 
 class JobListPage extends Component {
-  constructor() {
-    super()
-
-    const importedProfile = profile.get()
+  constructor(props) {
+    super(props)
 
     this.state = {
       search: '',
       jobs: [],
-      profile: importedProfile,
-      orderByOption: importedProfile && importedProfile.ref ? 'relevance' : 'recentlyPosted',
+      orderByOption: props.profile && props.profile.ref ? 'relevance' : 'recentlyPosted',
       position: null,
     }
   }
 
   clearProfile() {
-    profile.clear()
-    this.setState({ profile: null })
   }
 
   onSearch(event) {
@@ -47,7 +40,7 @@ class JobListPage extends Component {
     const queryString = qs.stringify({
       orderBy: this.state.orderByOption,
       sort: 'asc',
-      ...(this.state.orderByOption === 'relevance' ? this.state.profile : {}),
+      ...(this.state.orderByOption === 'relevance' ? this.props.profile : {}),
       ...(this.state.orderByOption === 'distance' ? this.state.position : {}),
 
       // TODO: Implement pagination
@@ -77,15 +70,15 @@ class JobListPage extends Component {
     return (
       <Fragment>
         <SearchBox
-          profile={this.state.profile}
-          clearProfile={this.clearProfile.bind(this)}
+          profile={this.props.profile}
+          clearProfile={() => this.props.clearProfile()}
           onSearch={this.onSearch.bind(this)}
           search={this.state.search}
           setOrderByOption={this.setOrderByOption.bind(this)}
           hasPosition={!!this.state.position}
         />
         <div className="container">
-          <SortedJobList jobs={this.state.jobs} search={this.state.search} />
+          <OrderedJobList />
         </div>
         <MapButton />
       </Fragment>
