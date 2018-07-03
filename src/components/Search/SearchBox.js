@@ -19,6 +19,17 @@ const DisconnectButton = styled(
   padding: 0;
 `
 
+const Heading = styled.h1`
+  color: white;
+  text-align: center;
+  margin: 0.6em 0 0.8em 0;
+  padding: 0;
+
+  &:after {
+    display: none;
+  }
+`
+
 class SearchBox extends Component {
   componentDidMount() {
     this.props.setDefaultSortingOption()
@@ -47,6 +58,7 @@ class SearchBox extends Component {
     return (
       <div className={[className].join(' ')}>
       <div className="container">
+        <Heading className="visible-md visible-lg">Search gig jobs</Heading>
         <SearchInput value={search} onChange={onSearch} />
 
         <Select onSelect={setSortingOption} prefix="<strong>Sort: </strong>" options={this.getSearchOptions()} />
@@ -69,6 +81,10 @@ const StyledSearchBox = styled(SearchBox)`
   padding-top: 1em;
   margin-bottom: 1.5em;
   font-weight: 200;
+
+  @media(min-width: 992px) {
+    padding-bottom: 1em;
+  }
 `
 
 export default StyledSearchBox
