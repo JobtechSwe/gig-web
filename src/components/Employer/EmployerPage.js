@@ -21,22 +21,45 @@ const EmployerPage = () => (
           <div className="col-md-7">
             <InfoBlock>
               <h2>Our partners</h2>
-              <p>Ut consectetur turpis eget est auctor, eget bibendum mi porttitor. Nulla ut lectus quis ipsum malesuada euismod. In vel justo sapien. Aliquam erat volutpat. Morbi eget posuere risus, id aliquet sapien.</p>
+              <p>
+                We colaborate with several platforms for gig jobs. Choose the
+                one best suited for your need and place your add with them. Your
+                add will be displayed both on their site and with us to maximize
+                the chance of finding just the right person for the job.
+              </p>
             </InfoBlock>
             <InfoBlock>
               <Gigstr />
-              <p>Ut consectetur turpis eget est auctor, eget bibendum mi porttitor. Nulla ut lectus quis ipsum malesuada euismod.</p>
+              <p>
+                Gigstr is the gig platform connecting students and companies!
+                Companies post jobs for free, match with and hire young
+                professionals. You can trial hire before deciding to make a
+                permanent hire, or simply continue to hire via Gigstr.{' '}
+              </p>
               <PartnerLink href="http://www.gigstr.com/">gigstr.se</PartnerLink>
             </InfoBlock>
             <InfoBlock>
               <JustArrived />
-              <p>Ut consectetur turpis eget est auctor, eget bibendum mi porttitor. Nulla ut lectus quis ipsum malesuada euismod.</p>
-              <PartnerLink href="https://justarrived.se/">justarrived.se</PartnerLink>
+              <p>
+                Just Arrived is a non-profit company and a digital service that
+                matches newcomers with simple jobs that companies need help
+                with.
+              </p>
+              <PartnerLink href="https://justarrived.se/">
+                justarrived.se
+              </PartnerLink>
             </InfoBlock>
             <InfoBlock>
               <Taskrunner />
-              <p>Ut consectetur turpis eget est auctor, eget bibendum mi porttitor. Nulla ut lectus quis ipsum malesuada euismod.</p>
-              <PartnerLink href="https://www.taskrunner.se/">taskrunner.se</PartnerLink>
+              <p>
+                Do you need help to put to gether a furniture from IKEA, do some
+                gardening or clean your windos? TaskRunner is here to help. We
+                connect you with quality assured people close to you - on
+                demand.
+              </p>
+              <PartnerLink href="https://www.taskrunner.se/">
+                taskrunner.se
+              </PartnerLink>
             </InfoBlock>
           </div>
         </div>
