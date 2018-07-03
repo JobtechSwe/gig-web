@@ -17,12 +17,22 @@ const HomePage = () => (
           <div className="col-md-7">
             <InfoBlock>
               <h2>A gig platform</h2>
-              <p>At gig.se we collect jobs from several Swedish job platforms and employment services. Here you can find part-time or gig jobs. This is a perfect opportunity to expand your network and a great way to enter the Swedish labor market.</p>
+              <p>
+                At gig.se we collect jobs from several Swedish job platforms and
+                employment services. Here you can find part-time or gig jobs.
+                This is a perfect opportunity to expand your network and a great
+                way to enter the Swedish labor market.
+              </p>
             </InfoBlock>
 
             <InfoBlock>
               <h2>How does it work?</h2>
-              <p>Ut consectetur turpis eget est auctor, eget bibendum mi porttitor. Nulla ut lectus quis ipsum malesuada euismod. In vel justo sapien. Aliquam erat volutpat. Morbi eget posuere risus, id aliquet sapien.</p>
+              <p>
+                There is two ways to get started. Either just enter the site and
+                start searching for your next job or you can register with
+                jobskills.se. Enter your CV and let us match you with jobs
+                perfect for you.
+              </p>
             </InfoBlock>
           </div>
         </div>
