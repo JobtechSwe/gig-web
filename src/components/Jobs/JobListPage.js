@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-import MapButton from '../MapButton'
+import MapButton from '../Map/MapButton'
 import SearchBox from '../../containers/Search/SearchBox'
 import OrderedJobList from '../../containers/Jobs/OrderedJobList'
 

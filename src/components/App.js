@@ -4,11 +4,11 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Header from './Header/Header'
 import HideableSideBarMenu from '../containers/Menu/HideableSideBarMenu'
 
-import EmployerPage from './Pages/EmployerPage'
-import HomePage from './Pages/HomePage'
-import JobListPage from './Pages/JobListPage'
-import JobPage from './Pages/JobPage'
-import MapPage from './Pages/MapPage'
+import EmployerPage from './Employer/EmployerPage'
+import HomePage from './Home/HomePage'
+import JobListPage from './Jobs/JobListPage'
+import JobPage from './Jobs/JobPage'
+import MapPage from './Map/MapPage'
 
 class App extends Component {
   componentDidMount() {

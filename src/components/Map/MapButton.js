@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import colors from '../colors'
-import MapIcon from './Icons/MapIcon'
+import colors from '../../colors'
+import MapIcon from '../Icons/MapIcon'
 
 const MapButton = styled(
   ({ className }) =>

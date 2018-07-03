@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 
+import Intro from './Intro'
 import Container from '../Common/Container'
 import Footer from '../Common/Footer'
-import Intro from '../Home/Intro'
 import EmployerInfo from '../Home/EmployerInfo'
 import InfoBlock from '../Common/InfoBlock'
 
