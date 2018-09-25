@@ -1,7 +1,15 @@
-import { SET_SELECTED_SORTING_OPTION } from '../actions/search'
+import {
+  SET_SELECTED_SORTING_OPTION,
+  SET_PAGINATION,
+} from '../actions/search'
 
 const initialState = {
-  selectedSortingOption: null
+  selectedSortingOption: null,
+  pagination: {
+    total: 0,
+    currentPage: 1,
+    totalPages: 1,
+  },
 }
 
 const searchReducer = (state = initialState, action) => {
@@ -10,6 +18,12 @@ const searchReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedSortingOption: action.option
+      }
+
+    case SET_PAGINATION:
+      return {
+        ...state,
+        pagination: action.pagination
       }
 
     default:

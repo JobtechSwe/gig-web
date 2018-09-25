@@ -18,8 +18,8 @@ class App extends Component {
   }
 
   clearQueryString() {
-    const withoutQueryString = window.location.protocol + "//" + window.location.host + window.location.pathname
-    window.history.pushState({ path: withoutQueryString }, '', withoutQueryString)
+    const path = `${window.location.protocol}//${window.location.host}${window.location.pathname}`
+    window.history.pushState({ path }, '', path)
   }
 
   render () {

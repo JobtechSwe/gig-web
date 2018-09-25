@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import JobCard from './JobCard'
 import Masonry from '../Masonry'
+import LoadMoreJobs from './LoadMoreJobs'
 import AvailableJobsCounter from './AvailableJobsCounter'
 
 const NoTextDecorationOnHoverLink = styled(Link)`
@@ -18,11 +19,11 @@ class JobList extends Component {
   }
 
   render() {
-    const { jobs } = this.props
+    const { jobs, pagination, setPage } = this.props
 
     return (
       <Fragment>
-        <AvailableJobsCounter count={jobs.length} />
+        <AvailableJobsCounter count={pagination.total} />
         <Masonry.Layout>
           {
             jobs.map(job =>
@@ -34,6 +35,7 @@ class JobList extends Component {
             )
           }
         </Masonry.Layout>
+        <LoadMoreJobs pagination={pagination} setPage={setPage} />
       </Fragment>
     )
   }

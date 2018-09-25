@@ -7,7 +7,7 @@ import ClickableMenuToggler from '../../containers/Header/ClickableMenuToggler'
 import HeaderMenu from '../Menu/HeaderMenu'
 
 const Header = styled(({ className }) =>
-  <div className={'navbar navbar-default ' + className}>
+  <div className={`navbar navbar-default ${className}`}>
     <Container>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div className="navbar-header">

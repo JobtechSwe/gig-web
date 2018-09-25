@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 
 import AvailableJobsCounter from './AvailableJobsCounter'
 import JobList from './JobList'
+import LoadMoreJobs from './LoadMoreJobs'
 
 const getKeywords = (searchString) =>
   searchString
@@ -27,13 +28,14 @@ const sortJobs = (jobs, search) => {
     })
 }
 
-const SortedJobList = ({ jobs = [], search = '' }) => {
+const SortedJobList = ({ jobs = [], search = '', pagination = {}, setPage }) => {
   const sortedJobs = sortJobs(jobs, search)
 
   return (
     <Fragment>
-      <AvailableJobsCounter count={sortedJobs.length} />
+      <AvailableJobsCounter count={pagination.total} />
       <JobList jobs={sortedJobs} />
+      <LoadMoreJobs pagination={pagination} setPage={setPage} />
     </Fragment>
   )
 }
