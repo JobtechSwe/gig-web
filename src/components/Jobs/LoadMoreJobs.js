@@ -11,11 +11,12 @@ const PaginationButton = styled(
       {text}
     </button>
 )`
-  display: table-cell;
   background: transparent;
   border: none;
   text-decoration: underline;
+  width: 100%;
   &:disabled {
+    color: ${colors.gray50};
     text-decoration: none;
   }
 `
@@ -64,17 +65,15 @@ class LoadMoreJobs extends Component {
     const prev = current > total
     const next = current < total
 
-    return <div className={className} style={{ marginBottom: '1.5em' }}>
-      <div className="table-row">
-        {prev && <PaginationButton key="prev" onClick={this.onClick.bind(this, current - 1)} text="<"/>}
-        {
-          pageRange(current, total).map(page => {
-            const disabled = page === current ? { disabled: true } : null
-            return <PaginationButton attr={disabled} key={page} onClick={this.onClick.bind(this, page)} text={page} />
-          })
-        }
-        {next && <PaginationButton key="next" onClick={this.onClick.bind(this, current + 1)} text=">" />}
-      </div>
+    return <div className={className}>
+      {prev && <PaginationButton key="prev" onClick={this.onClick.bind(this, current - 1)} text="<"/>}
+      {
+        pageRange(current, total).map(page => {
+          const disabled = page === current ? { disabled: true } : null
+          return <PaginationButton attr={disabled} key={page} onClick={this.onClick.bind(this, page)} text={page} />
+        })
+      }
+      {next && <PaginationButton key="next" onClick={this.onClick.bind(this, current + 1)} text=">" />}
     </div>
   }
 }
@@ -82,12 +81,10 @@ class LoadMoreJobs extends Component {
 const StyledLoadMoreJobs = styled(LoadMoreJobs)`
   color: ${colors.blue};
   font-weight: 600;
-  width: 100%;
-  display: table;
-  .table-row {
-    display: table-row;
-    width: 100%;
-  }
+  max-width: 500px;
+  display: flex;
+  margin: 2em auto;
+  align-items: center;
 `
 
 export default StyledLoadMoreJobs

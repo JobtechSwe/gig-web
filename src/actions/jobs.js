@@ -14,7 +14,7 @@ const getJobsUrl = (profile, position, sortingOption, page) => {
     ...(sortingOption === 'relevance' ? profile : {}),
     ...(sortingOption === 'distance' ? position : {}),
     page,
-    pageLimit: 20,
+    pageLimit: 10,
   })
 
   return `${process.env.REACT_APP_API_HOST}/jobs?${queryString}`
