@@ -53,7 +53,6 @@ class LoadMoreJobs extends Component {
     event.stopPropagation()
     await this.props.setPage(page)
 
-    // document.querySelector('.navbar').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
     document.querySelector('.navbar').scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
@@ -83,7 +82,7 @@ const StyledLoadMoreJobs = styled(LoadMoreJobs)`
   font-weight: 600;
   max-width: 500px;
   display: flex;
-  margin: 2em auto;
+  margin: 2em auto 7em;
   align-items: center;
 `
 

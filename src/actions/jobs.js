@@ -54,13 +54,15 @@ export const fetchJob = (id) => {
   return (dispatch) => {
     dispatch(setLoadingJob(true))
 
-    fetch(`${process.env.REACT_APP_API_HOST}/jobs?page=1&pageLimit=1000`)
+    fetch(`${process.env.REACT_APP_API_HOST}/job/${id}`)
       .then(response => response.json())
-      .then(data => data.results)
-      .then(jobs => jobs.find(job => job.id === id))
       .then(job => {
         dispatch(setJob(job))
         dispatch(setLoadingJob(false))
+      })
+      .catch(error => {
+        console.error(error)
+
       })
   }
 }
