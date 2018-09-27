@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import Options from '../../components/SearchOptions/Options'
+import Options from '../../components/SearchOptions/OptionsView'
 
 import { fetchJobs } from '../../actions/jobs'
 import { setDefaultSortingOption, setSortingOption } from '../../actions/search'

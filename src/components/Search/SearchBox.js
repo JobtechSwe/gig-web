@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import colors from '../../colors'
 
 import SearchOptionsButton from '../SearchOptions/Button'
-import SearchOptions from '../SearchOptions/Layout'
+import SearchOptions from '../SearchOptions/ShowMenu'
 import SearchInput from './SearchInput'
 
 const DisconnectButton = styled(

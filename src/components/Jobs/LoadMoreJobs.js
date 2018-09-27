@@ -7,7 +7,14 @@ const MAX_PAGE_OFFSET = 6
 const PaginationButton = styled(
   ({ onClick, text, active, className }) =>
     <li className={[className].join(' ')}>
-      {active ? <span>{text}</span> : <a href="#" onClick={onClick}>{text}</a>}
+      {active
+        ? <span>{text}</span>
+        : (
+          // AF uses A-nodes  their visual guidelines
+          // eslint-disable-next-line
+          <a href="#" onClick={onClick}>{text}</a>
+        )
+      }
     </li>
 )`
   &.active, &.disabled {
