@@ -19,9 +19,11 @@ class JobList extends Component {
   }
 
   render() {
-    const { jobs, pagination, setPage } = this.props
+    const {
+      props: { jobs, pagination, setPage, showSearchOptions }
+    } = this
 
-    return (
+    return !showSearchOptions && (
       <Fragment>
         <AvailableJobsCounter count={pagination.total} />
         <Masonry.Layout>

@@ -1,6 +1,7 @@
 import {
   SET_SELECTED_SORTING_OPTION,
   SET_PAGINATION,
+  SET_SHOW_SEARCH_OPTIONS,
 } from '../actions/search'
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
     currentPage: 1,
     totalPages: 1,
   },
+  showSearchOptions: false,
 }
 
 const searchReducer = (state = initialState, action) => {
@@ -24,6 +26,12 @@ const searchReducer = (state = initialState, action) => {
       return {
         ...state,
         pagination: action.pagination
+      }
+
+    case SET_SHOW_SEARCH_OPTIONS:
+      return {
+        ...state,
+        showSearchOptions: action.show
       }
 
     default:

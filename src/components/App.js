@@ -1,6 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 
+import styled from 'styled-components'
+
+import colors from '../colors'
+
 import Header from './Header/Header'
 import HideableSideBarMenu from '../containers/Menu/HideableSideBarMenu'
 
@@ -23,20 +27,39 @@ class App extends Component {
   }
 
   render () {
+    const {
+      props: { className, showSearchOptions }
+    } = this
+
+    const classNames = [className]
+
+    if (showSearchOptions) {
+      classNames.push('search-options_open')
+    }
+
     return (
-      <BrowserRouter>
-        <Fragment>
-          <Header />
-          <HideableSideBarMenu />
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/employers" component={EmployerPage} />
-          <Route exact path="/jobs" component={JobListPage} />
-          <Route path="/jobs/:jobId" component={JobPage} />
-          <Route path="/map" component={MapPage} />
-        </Fragment>
-      </BrowserRouter>
+      <div className={classNames.join(' ')}>
+        <BrowserRouter>
+          <Fragment>
+            <Header />
+            <HideableSideBarMenu />
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/employers" component={EmployerPage} />
+            <Route exact path="/jobs" component={JobListPage} />
+            <Route path="/jobs/:jobId" component={JobPage} />
+            <Route path="/map" component={MapPage} />
+          </Fragment>
+        </BrowserRouter>
+      </div>
     )
   }
 }
 
-export default App
+const StyledApp = styled(App)`
+  min-height: 100vh;
+  &.search-options_open {
+    background: ${colors.white};
+  }
+`
+
+export default StyledApp

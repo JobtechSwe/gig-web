@@ -60,10 +60,6 @@ export const fetchJob = (id) => {
         dispatch(setJob(job))
         dispatch(setLoadingJob(false))
       })
-      .catch(error => {
-        console.error(error)
-
-      })
   }
 }
 

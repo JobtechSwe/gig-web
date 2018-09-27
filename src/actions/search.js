@@ -1,6 +1,7 @@
 export const SET_SELECTED_SORTING_OPTION = 'SET_SELECTED_SORTING_OPTION'
 export const SET_PAGINATION = 'SET_PAGINATION'
 export const SET_PAGE = 'SET_PAGE'
+export const SET_SHOW_SEARCH_OPTIONS = 'SET_SHOW_SEARCH_OPTIONS'
 
 export const setSortingOption = (option) => ({
   type: SET_SELECTED_SORTING_OPTION,
@@ -28,5 +29,12 @@ export const setPage = page => {
     pagination.page = page
 
     dispatch(setPagination(pagination))
+  }
+}
+
+export const setShowSearchOptions = show => {
+  return {
+    type: SET_SHOW_SEARCH_OPTIONS,
+    show
   }
 }

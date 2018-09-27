@@ -3,10 +3,18 @@ import { connect } from 'react-redux'
 import { fetchJobs } from '../../actions/jobs'
 import { setPage } from '../../actions/search'
 
-const mapStateToProps = state => ({
-  jobs: state.jobs.jobs,
-  pagination: state.search.pagination,
-})
+const mapStateToProps = state => {
+  const {
+    jobs: { jobs },
+    search: { pagination, showSearchOptions }
+  } = state
+
+  return {
+    jobs,
+    pagination,
+    showSearchOptions,
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   fetchJobs: () => {

@@ -7,18 +7,18 @@ const MAX_PAGE_OFFSET = 6
 
 const PaginationButton = styled(
   ({ onClick, className, text, attr }) =>
-    <button className={className} {...attr} onClick={onClick}>
+    <li className={className} {...attr} onClick={onClick}>
       {text}
-    </button>
+    </li>
 )`
-  background: transparent;
-  border: none;
-  text-decoration: underline;
-  width: 100%;
-  &:disabled {
-    color: ${colors.gray50};
-    text-decoration: none;
-  }
+  // background: transparent;
+  // border: none;
+  // text-decoration: underline;
+  // width: 100%;
+  // &:disabled {
+  //   color: ${colors.gray50};
+  //   text-decoration: none;
+  // }
 `
 
 function pageRange (current, total) {
@@ -64,16 +64,15 @@ class LoadMoreJobs extends Component {
     const prev = current > total
     const next = current < total
 
-    return <div className={className}>
-      {prev && <PaginationButton key="prev" onClick={this.onClick.bind(this, current - 1)} text="<"/>}
+    return <ul className={[className, 'pagination'].join(' ')}>
+      {prev && <PaginationButton className="disabled" key="prev" onClick={this.onClick.bind(this, current - 1)} text="<"/>}
       {
         pageRange(current, total).map(page => {
-          const disabled = page === current ? { disabled: true } : null
-          return <PaginationButton attr={disabled} key={page} onClick={this.onClick.bind(this, page)} text={page} />
+          return <PaginationButton className={page === current && 'active'} key={page} onClick={this.onClick.bind(this, page)} text={page} />
         })
       }
-      {next && <PaginationButton key="next" onClick={this.onClick.bind(this, current + 1)} text=">" />}
-    </div>
+      {next && <PaginationButton className="disabled" key="next" onClick={this.onClick.bind(this, current + 1)} text=">" />}
+    </ul>
   }
 }
 

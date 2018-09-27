@@ -5,8 +5,15 @@ import { setDefaultSortingOption } from '../actions/search'
 
 import { loadProfileFromQueryString } from '../profile'
 
-const mapDispatchToProps = (dispatch) => ({
-  loadProfileFromQueryString: (queryString) => {
+const mapStateToProps = state => {
+  const { search: { showSearchOptions } } = state
+  return {
+    showSearchOptions,
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  loadProfileFromQueryString: queryString => {
     if (queryString) {
       const profile = loadProfileFromQueryString(queryString)
       dispatch(setProfile(profile))
@@ -15,6 +22,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-const ProfileAwareApp = connect(null, mapDispatchToProps)(App)
-
-export default ProfileAwareApp
+export default connect(mapStateToProps, mapDispatchToProps)(App)
