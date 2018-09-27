@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-
 import colors from '../../colors'
 
 const MAX_PAGE_OFFSET = 6
 
 const PaginationButton = styled(
-  ({ onClick, className, text, attr }) =>
-    <li className={className} {...attr} onClick={onClick}>
-      {text}
+  ({ onClick, text, active, className }) =>
+    <li className={[className].join(' ')}>
+      {active ? <span>{text}</span> : <a href="#" onClick={onClick}>{text}</a>}
     </li>
 )`
-  // background: transparent;
-  // border: none;
-  // text-decoration: underline;
-  // width: 100%;
-  // &:disabled {
-  //   color: ${colors.gray50};
-  //   text-decoration: none;
-  // }
+  &.active, &.disabled {
+    & > a, & > span {
+      &, &:hover {
+        color: ${colors.gray90};
+        text-decoration: none;
+        background: none;
+        border-color: transparent;
+      }
+    }
+  }
 `
 
 function pageRange (current, total) {
@@ -49,8 +50,13 @@ function pageRange (current, total) {
 }
 
 class LoadMoreJobs extends Component {
-  async onClick (page, event) {
+  async onClick (page, enabled, event) {
     event.stopPropagation()
+
+    if (!enabled) {
+      return
+    }
+
     await this.props.setPage(page)
 
     document.querySelector('.navbar').scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -61,28 +67,39 @@ class LoadMoreJobs extends Component {
 
     const { currentPage: current, totalPages: total } = pagination
 
-    const prev = current > total
+    const prev = current > 1
     const next = current < total
 
     return <ul className={[className, 'pagination'].join(' ')}>
-      {prev && <PaginationButton className="disabled" key="prev" onClick={this.onClick.bind(this, current - 1)} text="<"/>}
+      <PaginationButton className={!prev && 'disabled'} active={false} key="prev" onClick={this.onClick.bind(this, current - 1, prev)} text="«" />
       {
         pageRange(current, total).map(page => {
-          return <PaginationButton className={page === current && 'active'} key={page} onClick={this.onClick.bind(this, page)} text={page} />
+          const active = page === current
+          return <PaginationButton className={active && 'active'} active={active} key={page} onClick={this.onClick.bind(this, page, true)} text={page} />
         })
       }
-      {next && <PaginationButton className="disabled" key="next" onClick={this.onClick.bind(this, current + 1)} text=">" />}
+      <PaginationButton className={!next && 'disabled'} active={false} key="next" onClick={this.onClick.bind(this, current + 1, next)} text="»" />
     </ul>
   }
 }
 
 const StyledLoadMoreJobs = styled(LoadMoreJobs)`
-  color: ${colors.blue};
-  font-weight: 600;
   max-width: 500px;
   display: flex;
   margin: 2em auto 7em;
   align-items: center;
+  justify-content: center;
+  li {
+    & > a, & > span {
+      padding: 0.3em 0.5em;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      border-radius: 0 !important;
+      &, &:active, &:focus, &:hover {
+        color: ${colors.gray90};
+      }
+    }
+  }
 `
 
 export default StyledLoadMoreJobs
