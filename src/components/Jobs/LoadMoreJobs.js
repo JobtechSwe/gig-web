@@ -76,16 +76,22 @@ class LoadMoreJobs extends Component {
 
     const prev = current > 1
     const next = current < total
+    const offset = Math.floor(MAX_PAGE_OFFSET / 2)
+
+    const toStart = (current - offset) > 1 && <PaginationButton key="start" onClick={this.onClick.bind(this, 1, true)} text="<<" />
+    const toEnd = (current + offset) < total && <PaginationButton key="end" onClick={this.onClick.bind(this, total, true)} text=">>" />
 
     return <ul className={[className, 'pagination'].join(' ')}>
-      <PaginationButton className={!prev && 'disabled'} active={false} key="prev" onClick={this.onClick.bind(this, current - 1, prev)} text="«" />
+      {toStart}
+      <PaginationButton className={!prev && 'disabled'} key="prev" onClick={this.onClick.bind(this, current - 1, prev)} text="<" />
       {
         pageRange(current, total).map(page => {
           const active = page === current
           return <PaginationButton className={active && 'active'} active={active} key={page} onClick={this.onClick.bind(this, page, true)} text={page} />
         })
       }
-      <PaginationButton className={!next && 'disabled'} active={false} key="next" onClick={this.onClick.bind(this, current + 1, next)} text="»" />
+      <PaginationButton className={!next && 'disabled'} key="next" onClick={this.onClick.bind(this, current + 1, next)} text=">" />
+      {toEnd}
     </ul>
   }
 }
