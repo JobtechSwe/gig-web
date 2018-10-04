@@ -8,7 +8,10 @@ import { setDefaultSortingOption, setSortingOption } from '../../actions/search'
 const mapStateToProps = state => {
   const {
     profile: { profile },
-    search: { selectedSortingOption: selectedOption, showSearchOptions },
+    search: {
+      selectedSortingOption: selectedOption,
+      showSearchOptions
+    },
     location: { position }
   } = state
 

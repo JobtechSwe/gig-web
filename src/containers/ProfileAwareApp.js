@@ -7,6 +7,7 @@ import { loadProfileFromQueryString } from '../profile'
 
 const mapStateToProps = state => {
   const { search: { showSearchOptions } } = state
+
   return {
     showSearchOptions,
   }

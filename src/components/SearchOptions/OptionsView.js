@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+
 import styled from 'styled-components'
 
 import Select from '../Select/Select'
+import ButtonToggle from './ButtonToggle'
 
 class Options extends Component {
   componentDidMount() {
@@ -20,6 +22,11 @@ class Options extends Component {
     ]
   }
 
+  requirePersonalNumber(required) {
+    console.log(this.props)
+    console.log({required})
+  }
+
   render() {
     const {
       props: {
@@ -33,6 +40,9 @@ class Options extends Component {
       <div className={className}>
         <h2>Sort</h2>
         <Select onSelect={setSortingOption} prefix="<strong>Sort: </strong>" options={this.getSearchOptions()} />
+        <hr />
+        <h2>Migration status</h2>
+        <ButtonToggle text="Personal number is required" onUpdate={this.requirePersonalNumber.bind(this)}/>
       </div>
     )
   }

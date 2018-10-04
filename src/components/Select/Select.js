@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 
+import colors from '../../colors'
+
 import SelectIcon from './SelectIcon'
 import OptionGroup from './OptionGroup'
 
@@ -61,7 +63,7 @@ class Select extends Component {
 }
 
 const StyledSelect = styled(Select)`
-  background: white;
+  background: ${colors.gray20};
   padding: 0 14px;
   height: 38px;
   line-height: 38px;
@@ -70,6 +72,7 @@ const StyledSelect = styled(Select)`
   color: black;
   position: relative;
   cursor: pointer;
+  border-radius: 5px;
 `
 
 export default StyledSelect

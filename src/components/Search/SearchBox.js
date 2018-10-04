@@ -56,14 +56,15 @@ class SearchBox extends Component {
         onSearch,
         profile,
         clearProfile,
-        showSearchOptions
+        showSearchOptions,
+        total
       }
     } = this
 
     const displayProfileDisconnect = this.shouldDisplayProfileDisconnect()
 
     const searchFilter =
-      <div>
+      <div className="default_view">
         <Heading className="visible-md visible-lg">Search gig jobs</Heading>
         <SearchInput value={search} onChange={onSearch} />
         <SearchOptions toggle={this.showSearchOptions.bind(this)} />
@@ -76,9 +77,9 @@ class SearchBox extends Component {
       </div>
 
     const searchOptions =
-      <div>
+      <div className="search_options">
         <h2>Search Options</h2>
-        <SearchOptionsButton toggle={this.hideSearchOptions.bind(this)} />
+        <SearchOptionsButton total={total} toggle={this.hideSearchOptions.bind(this)} />
       </div>
 
     return (
@@ -97,6 +98,13 @@ const StyledSearchBox = styled(SearchBox)`
   padding-top: 1em;
   margin-bottom: 1.5em;
   font-weight: 200;
+
+  .search_options {
+    h2 {
+      margin-top: .9em;
+      vertical-align: bottom;
+    }
+  }
 
   h2 {
     color: white;

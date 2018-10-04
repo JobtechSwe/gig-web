@@ -20,12 +20,16 @@ class SearchOptionsButton extends Component {
   }
 
   render() {
-    const { className } = this.props
+    const {
+      props: { className, total }
+    } = this
+
+    const displayTotal = total > 0
 
     return (
       <div className={className}>
         <div onClick={this.onClick.bind(this)}>
-          Close
+          { displayTotal ? `Show ${total} jobs` : 'Close' }
         </div>
       </div>
     )
