@@ -20,7 +20,6 @@ class OptionGroup extends Component {
           options
             .filter(option => option.display !== false)
             .map(option => {
-              console.log(option)
               return <Option key={option.key} onClick={this.onClick.bind(this, option)}>{option.value}</Option>
             })
         }

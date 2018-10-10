@@ -7,14 +7,26 @@ export const SET_JOB = 'SET_JOB'
 export const SET_JOBS = 'SET_JOBS'
 export const SET_LOADING_JOB = 'SET_LOADING_JOB'
 
-const getJobsUrl = (profile, position, sortingOption, page) => {
+const getJobsUrl = ({
+  orderBy,
+  page,
+  sortingOption,
+  profile,
+  position,
+  sort = 'asc',
+  pageLimit = 10,
+  filter: {
+    requireSsn
+  }
+}) => {
   const queryString = qs.stringify({
-    orderBy: sortingOption,
-    sort: 'asc',
+    orderBy,
+    sort,
     ...(sortingOption === 'relevance' ? profile : {}),
     ...(sortingOption === 'distance' ? position : {}),
     page,
-    pageLimit: 10,
+    pageLimit,
+    requireSsn: requireSsn || undefined,
   })
 
   return `${process.env.REACT_APP_API_HOST}/jobs?${queryString}`
@@ -22,14 +34,29 @@ const getJobsUrl = (profile, position, sortingOption, page) => {
 
 export const fetchJobs = () => {
   return (dispatch, getState) => {
-    const state = getState()
+    const {
+      profile: {
+        profile
+      },
+      location: {
+        position
+      },
+      search: {
+        selectedSortingOption: sortingOption,
+        pagination: {
+          page
+        },
+        filter
+      }
+    } = getState()
 
-    const profile = state.profile.profile
-    const position = state.location.position
-    const sortingOption = state.search.selectedSortingOption
-    const page = state.search.pagination.page
-
-    const url = getJobsUrl(profile, position, sortingOption, page)
+    const url = getJobsUrl({
+      profile,
+      position,
+      orderBy: sortingOption,
+      page,
+      filter
+    })
 
     return fetch(url)
       .then(response => response.json())

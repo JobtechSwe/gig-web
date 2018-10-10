@@ -23,8 +23,9 @@ class Options extends Component {
   }
 
   requirePersonalNumber(required) {
-    console.log(this.props)
-    console.log({required})
+    this.props.setFilterOptions({
+      requireSsn: required
+    })
   }
 
   render() {
@@ -33,6 +34,7 @@ class Options extends Component {
         className,
         showSearchOptions,
         setSortingOption,
+        requireSsn,
       }
     } = this
 
@@ -42,7 +44,7 @@ class Options extends Component {
         <Select onSelect={setSortingOption} prefix="<strong>Sort: </strong>" options={this.getSearchOptions()} />
         <hr />
         <h2>Migration status</h2>
-        <ButtonToggle text="Personal number is required" onUpdate={this.requirePersonalNumber.bind(this)}/>
+        <ButtonToggle text="Personal number is required" checked={requireSsn} onUpdate={this.requirePersonalNumber.bind(this)}/>
       </div>
     )
   }

@@ -3,14 +3,17 @@ import { connect } from 'react-redux'
 import Options from '../../components/SearchOptions/OptionsView'
 
 import { fetchJobs } from '../../actions/jobs'
-import { setDefaultSortingOption, setSortingOption } from '../../actions/search'
+import { setDefaultSortingOption, setSortingOption, setFilterOptions } from '../../actions/search'
 
 const mapStateToProps = state => {
   const {
     profile: { profile },
     search: {
       selectedSortingOption: selectedOption,
-      showSearchOptions
+      showSearchOptions,
+      filter: {
+        requireSsn
+      }
     },
     location: { position }
   } = state
@@ -19,6 +22,7 @@ const mapStateToProps = state => {
     hasLocation: !!position,
     selectedOption,
     showSearchOptions,
+    requireSsn,
     profile,
   }
 }
@@ -30,6 +34,11 @@ const mapDispatchToProps = dispatch => ({
 
   setSortingOption: option => {
     dispatch(setSortingOption(option))
+    dispatch(fetchJobs())
+  },
+
+  setFilterOptions: filter => {
+    dispatch(setFilterOptions(filter))
     dispatch(fetchJobs())
   },
 
