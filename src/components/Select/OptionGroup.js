@@ -19,9 +19,9 @@ class OptionGroup extends Component {
         {
           options
             .filter(option => option.display !== false)
-            .map(option =>
-              <Option key={option.key} onClick={this.onClick.bind(this, option)}>{option.value}</Option>
-            )
+            .map(option => {
+              return <Option key={option.key} onClick={this.onClick.bind(this, option)}>{option.value}</Option>
+            })
         }
       </div>
     )
@@ -29,12 +29,12 @@ class OptionGroup extends Component {
 }
 
 const StyledOptionGroup = styled(OptionGroup)`
-  background: white;
+  background: ${colors.gray20};
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  box-shadow: 0 2px 6px ${colors.gray50};
+  border-radius: 5px;
 `
 
 export default StyledOptionGroup

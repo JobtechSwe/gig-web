@@ -4,15 +4,20 @@ import { withRouter } from 'react-router-dom'
 
 import JobListing from '../../components/Jobs/JobListing'
 
-const mapStateToProps = (state) => ({
-  job: state.jobs.job,
-  isLoading: state.jobs.isLoading,
-})
+const mapStateToProps = state => {
+  const { jobs: { job, isLoading } } = state
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchJob: (jobId) => {
-    dispatch(fetchJob(jobId))
+  return {
+    job,
+    isLoading,
   }
+}
+
+const mapDispatchToProps = dispatch => ({
+  fetchJob: jobId => {
+    dispatch(fetchJob(jobId))
+  },
+
 })
 
 const PopulatedJobListing = connect(mapStateToProps, mapDispatchToProps)(withRouter(JobListing))

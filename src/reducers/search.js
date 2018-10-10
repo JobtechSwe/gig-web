@@ -1,7 +1,21 @@
-import { SET_SELECTED_SORTING_OPTION } from '../actions/search'
+import {
+  SET_SELECTED_SORTING_OPTION,
+  SET_PAGINATION,
+  SET_SHOW_SEARCH_OPTIONS,
+  SET_FILTER_OPTIONS,
+} from '../actions/search'
 
 const initialState = {
-  selectedSortingOption: null
+  selectedSortingOption: null,
+  pagination: {
+    total: 0,
+    currentPage: 1,
+    totalPages: 1,
+  },
+  showSearchOptions: false,
+  filter: {
+    requireSsn: false
+  }
 }
 
 const searchReducer = (state = initialState, action) => {
@@ -10,6 +24,24 @@ const searchReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedSortingOption: action.option
+      }
+
+    case SET_PAGINATION:
+      return {
+        ...state,
+        pagination: action.pagination
+      }
+
+    case SET_SHOW_SEARCH_OPTIONS:
+      return {
+        ...state,
+        showSearchOptions: action.show
+      }
+
+    case SET_FILTER_OPTIONS:
+      return {
+        ...state,
+        filter: action.filter
       }
 
     default:

@@ -5,6 +5,9 @@ const Layout = styled.div`
     display: flex;
     flex-flow: row wrap;
     flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
     margin-left: -8px;
     margin-right: -8px;
   }

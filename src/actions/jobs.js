@@ -1,20 +1,32 @@
 import qs from 'query-string'
 
+import { setPagination } from '../actions/search'
+
 export const FETCH_JOBS = 'FETCH_JOBS'
 export const SET_JOB = 'SET_JOB'
 export const SET_JOBS = 'SET_JOBS'
 export const SET_LOADING_JOB = 'SET_LOADING_JOB'
 
-const getJobsUrl = (profile, position, sortingOption) => {
+const getJobsUrl = ({
+  orderBy,
+  page,
+  sortingOption,
+  profile,
+  position,
+  sort = 'asc',
+  pageLimit = 10,
+  filter: {
+    requireSsn
+  }
+}) => {
   const queryString = qs.stringify({
-    orderBy: sortingOption,
-    sort: 'asc',
+    orderBy,
+    sort,
     ...(sortingOption === 'relevance' ? profile : {}),
     ...(sortingOption === 'distance' ? position : {}),
-
-    // TODO: Implement pagination
-    page: 1,
-    pageLimit: 1000,
+    page,
+    pageLimit,
+    requireSsn: requireSsn || undefined,
   })
 
   return `${process.env.REACT_APP_API_HOST}/jobs?${queryString}`
@@ -22,18 +34,46 @@ const getJobsUrl = (profile, position, sortingOption) => {
 
 export const fetchJobs = () => {
   return (dispatch, getState) => {
-    const state = getState()
+    const {
+      profile: {
+        profile
+      },
+      location: {
+        position
+      },
+      search: {
+        selectedSortingOption: sortingOption,
+        pagination: {
+          page
+        },
+        filter
+      }
+    } = getState()
 
-    const profile = state.profile.profile
-    const position = state.location.position
-    const sortingOption = state.search.selectedSortingOption
-
-    const url = getJobsUrl(profile, position, sortingOption)
+    const url = getJobsUrl({
+      profile,
+      position,
+      orderBy: sortingOption,
+      page,
+      filter
+    })
 
     return fetch(url)
       .then(response => response.json())
-      .then(data => data.results)
-      .then(jobs => dispatch(setJobs(jobs)))
+      .then(({ results: jobs, total, totalPages, currentPage } = {}) => {
+        return {
+          jobs,
+          pagination: {
+            total,
+            currentPage,
+            totalPages,
+          }
+        }
+      })
+      .then(({ pagination, jobs }) => {
+        dispatch(setPagination(pagination))
+        dispatch(setJobs(jobs))
+      })
   }
 }
 
@@ -41,10 +81,8 @@ export const fetchJob = (id) => {
   return (dispatch) => {
     dispatch(setLoadingJob(true))
 
-    fetch(`${process.env.REACT_APP_API_HOST}/jobs?page=1&pageLimit=1000`)
+    fetch(`${process.env.REACT_APP_API_HOST}/job/${id}`)
       .then(response => response.json())
-      .then(data => data.results)
-      .then(jobs => jobs.find(job => job.id === id))
       .then(job => {
         dispatch(setJob(job))
         dispatch(setLoadingJob(false))
