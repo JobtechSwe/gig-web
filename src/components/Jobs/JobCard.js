@@ -28,7 +28,7 @@ const firstSentence = (text) =>
     : text.substr(0, text.indexOf('.') + 1)
 
 const JobCard = ({ job, children, sourceImagePosition = 'footer' }) =>
-  console.log(job) || <Card>
+  <Card>
     {
       sourceImagePosition === 'header' &&
       <Header>
