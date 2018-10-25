@@ -1,4 +1,4 @@
-import qs from 'query-string'
+import qs from 'qs'
 
 import { setPagination } from '../actions/search'
 
