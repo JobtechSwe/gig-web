@@ -1,0 +1,28 @@
+pipeline:
+
+  publish_ci:
+    image: plugins/docker
+    repo: arbetsformedlingen/gig-web
+    secrets: [ docker_username, docker_password, api_host, maps_api_key ]
+    force_tag: true
+    tags: latest
+    build_args:
+      - REACT_APP_GOOGLE_MAPS_API_KEY=${maps_api_key}
+      - REACT_APP_API_HOST=${api_host}
+    when:
+      branch: master
+      event: push
+
+  publish_tag:
+    image: plugins/docker
+    repo: arbetsformedlingen/gig-web
+    secrets: [ docker_username, docker_password, api_host, maps_api_key ]
+    force_tag: true
+    tags:
+      - ${DRONE_TAG##v}
+    build_args:
+      - REACT_APP_GOOGLE_MAPS_API_KEY=${maps_api_key}
+      - REACT_APP_API_HOST=${api_host}
+    when:
+      status: success
+      event: tag
