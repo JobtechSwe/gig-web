@@ -6,6 +6,11 @@ pipeline:
     secrets: [ docker_username, docker_password, api_host, maps_api_key ]
     force_tag: true
     tags: latest
+    environment:
+      maps_api_key:
+        $secret: maps_api_key
+      api_host:
+        $secret: api_host
     build_args:
       - REACT_APP_GOOGLE_MAPS_API_KEY=${maps_api_key}
       - REACT_APP_API_HOST=${api_host}
@@ -20,6 +25,11 @@ pipeline:
     force_tag: true
     tags:
       - ${DRONE_TAG##v}
+    environment:
+      maps_api_key:
+        $secret: maps_api_key
+      api_host:
+        $secret: api_host
     build_args:
       - REACT_APP_GOOGLE_MAPS_API_KEY=${maps_api_key}
       - REACT_APP_API_HOST=${api_host}
