@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { withGoogleMap, withScriptjs, GoogleMap, Marker } from 'react-google-maps'
 import { CSSTransition } from 'react-transition-group'
+import Loader from '../Spinner/Loader'
+import Map from './Map'
+import MapJobCard from './MapJobCard'
 
 import '../../animations.css'
-import mapStyles from '../../resources/map.json'
-import markerIcon from '../../resources/img/marker.svg'
 import colors from '../../colors'
 
-import JobCard from '../Jobs/JobCard'
-import Loader from '../Spinner/Loader'
-
-const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
-
-const CloseButton = styled(({ className, onClick }) => <Link to="#" onClick={onClick} className={className}><i className="i-times"></i></Link>)`
+const CloseButton = styled(
+  ({ className, onClick }) =>
+    <Link to="#" onClick={onClick} className={className}>
+      <i className="i-times"></i>
+    </Link>)
+`
   position: absolute;
   top: 80px;
   left: 16px;
@@ -22,61 +22,6 @@ const CloseButton = styled(({ className, onClick }) => <Link to="#" onClick={onC
   font-size: 24px;
   z-index: 100000;
   text-shadow: 0 0 8px ${colors.gray50};
-`
-
-const Map = withScriptjs(withGoogleMap(({ lat, lng, jobs, onSelectJob, onMapClick }) =>
-  <GoogleMap
-    defaultZoom={10}
-    defaultCenter={{ lat, lng }}
-    defaultOptions={{ styles: mapStyles, disableDefaultUI: true }}
-    onClick={onMapClick}
-  >
-    <MarkerClusterer
-      onClick={() => {}}
-      averageCenter
-      enableRetinaIcons
-      gridSize={60}
-    >
-      {
-        jobs.map(job =>
-          <Marker
-            key={job.id}
-            options={{ icon: markerIcon }}
-            position={{ lat: Number(job.latitude), lng: Number(job.longitude) }}
-            onClick={() => onSelectJob(job)}
-          />)
-      }
-    </MarkerClusterer>
-  </GoogleMap>
-))
-
-const SelectedJobCard = styled(({ className, job }) =>
-  <div className={className}>
-    {job && <JobCard job={job} sourceImagePosition="header">
-      <Link
-        to={`/jobs/${job.id}`}
-        className="btn btn-default btn-secondary btn-block"
-        style={{
-          color: colors.primary,
-          borderColor: colors.primary,
-          textTransform: 'none',
-          marginTop: '20px'
-        }}
-      >
-        Read more about this job
-      </Link>
-    </JobCard>}
-  </div>
-)`
-  position: absolute;
-  width: calc(100% - 20px);
-  left: 10px;
-  bottom: 0;
-
-  @media(min-width: 768px) {
-    width: 500px;
-    left: calc(50% - 250px);
-  }
 `
 
 class MapPage extends Component {
@@ -157,7 +102,7 @@ class MapPage extends Component {
           unmountOnExit
           onExited={() => this.setState({ selectedJob: undefined })}
         >
-          <SelectedJobCard job={this.state.selectedJob} />
+          <MapJobCard job={this.state.selectedJob} />
         </CSSTransition>
       </div>
     )
