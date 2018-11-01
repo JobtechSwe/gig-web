@@ -1,6 +1,6 @@
 {
   "name": "gig-web",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "serve": "10.0.2"
