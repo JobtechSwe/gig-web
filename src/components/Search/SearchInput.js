@@ -4,9 +4,11 @@ import styled from 'styled-components'
 import SearchIcon from './SearchIcon'
 
 const SearchInput = styled(
-  ({ className }) =>
+  ({ className, value, onChange }) =>
     <div className="form-group" style={{ position: 'relative' }}>
       <input
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         className={['form-control', className].join(' ')}
         placeholder="Search by city or competence"
         type="text"

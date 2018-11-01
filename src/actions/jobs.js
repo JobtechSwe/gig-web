@@ -17,7 +17,8 @@ const getJobsUrl = ({
   pageLimit = 10,
   filter: {
     requireSsn
-  }
+  },
+  queryText
 }) => {
   const queryString = qs.stringify({
     orderBy,
@@ -27,6 +28,7 @@ const getJobsUrl = ({
     page,
     pageLimit,
     requireSsn: requireSsn || undefined,
+    queryText
   })
 
   return `${process.env.REACT_APP_API_HOST}/jobs?${queryString}`
@@ -42,6 +44,7 @@ export const fetchJobs = () => {
         position
       },
       search: {
+        queryText,
         selectedSortingOption: sortingOption,
         pagination: {
           page
@@ -55,7 +58,8 @@ export const fetchJobs = () => {
       position,
       orderBy: sortingOption,
       page,
-      filter
+      filter,
+      queryText
     })
 
     return fetch(url)
