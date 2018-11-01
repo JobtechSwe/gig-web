@@ -14,7 +14,7 @@ import Loader from '../Spinner/Loader'
 
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
 
-const CloseButton = styled(({ className }) => <Link to="/" className={className}><i className="i-times"></i></Link>)`
+const CloseButton = styled(({ className, onClick }) => <Link to="#" onClick={onClick} className={className}><i className="i-times"></i></Link>)`
   position: absolute;
   top: 80px;
   left: 16px;
@@ -138,7 +138,7 @@ class MapPage extends Component {
 
     return (
       <div>
-        <CloseButton />
+        <CloseButton onClick={() => this.props.history.goBack()} />
         <Map
           lat={latitude}
           lng={longitude}
