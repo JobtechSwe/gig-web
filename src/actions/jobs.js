@@ -14,7 +14,7 @@ const getJobsUrl = ({
   profile,
   position,
   sort = 'asc',
-  pageLimit = 10,
+  pageLimit = 9,
   filter: {
     requireSsn
   }
