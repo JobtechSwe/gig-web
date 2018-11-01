@@ -12,20 +12,10 @@ import Duration from './Duration'
 import Location from './Location'
 import HorizontalIconContainer from '../Icons/HorizontalIconContainer'
 
-const cleanPreamble = preamble =>
-  preamble
-    .replace(/(<([^>]+)>)/ig, ' ') // replace html tags with a space
-    .replace(/ {2,}/, ' ') // replace 2 or more spaces with one
-
 const extractCityFromAddress = address =>
   address.includes(',')
     ? address.substr(address.indexOf(',') + 1).trim()
     : address
-
-const firstSentence = (text) =>
-  text.indexOf('.') === -1
-    ? text
-    : text.substr(0, text.indexOf('.') + 1)
 
 const JobCard = ({ job, children, sourceImagePosition = 'footer' }) =>
   <Card>
@@ -37,7 +27,7 @@ const JobCard = ({ job, children, sourceImagePosition = 'footer' }) =>
     }
     <Body>
       <Title>{job.title}</Title>
-      <Preamble dangerouslySetInnerHTML={{ __html: cleanPreamble(firstSentence(job.preamble)) }} />
+      <Preamble content={job.preamble} />
       <HorizontalIconContainer>
         <Location location={extractCityFromAddress(job.address)} />
         <Duration start={job.startDate} end={job.endDate} />
