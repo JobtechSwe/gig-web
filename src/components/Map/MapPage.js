@@ -10,9 +10,11 @@ import '../../animations.css'
 import colors from '../../colors'
 
 const CloseButton = styled(
-  ({ className }) =>
-    <Link to="/" className={className}><i className="i-times"></i></Link>
-)`
+  ({ className, onClick }) =>
+    <Link to="#" onClick={onClick} className={className}>
+      <i className="i-times"></i>
+    </Link>)
+`
   position: absolute;
   top: 80px;
   left: 16px;
@@ -81,7 +83,7 @@ class MapPage extends Component {
 
     return (
       <div>
-        <CloseButton />
+        <CloseButton onClick={() => this.props.history.goBack()} />
         <Map
           lat={latitude}
           lng={longitude}

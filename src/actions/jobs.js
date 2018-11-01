@@ -1,4 +1,4 @@
-import qs from 'query-string'
+import qs from 'qs'
 
 import { setPagination } from '../actions/search'
 
@@ -14,7 +14,7 @@ const getJobsUrl = ({
   profile,
   position,
   sort = 'asc',
-  pageLimit = 10,
+  pageLimit = 9,
   filter: {
     requireSsn
   }

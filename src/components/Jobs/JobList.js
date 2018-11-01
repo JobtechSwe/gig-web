@@ -6,10 +6,24 @@ import JobCard from './JobCard'
 import Masonry from '../Masonry'
 import LoadMoreJobs from './LoadMoreJobs'
 import AvailableJobsCounter from './AvailableJobsCounter'
+import MapIcon from '../Icons/MapIcon'
 
 const NoTextDecorationOnHoverLink = styled(Link)`
   &:hover {
     text-decoration: none;
+  }
+`
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const MapLink = styled(
+  ({ className }) => <Link className={className} to="/map"><MapIcon /> Show on map</Link>
+)`
+  @media(max-width: 768px) {
+    display: none;
   }
 `
 
@@ -25,7 +39,10 @@ class JobList extends Component {
 
     return !showSearchOptions && (
       <Fragment>
-        <AvailableJobsCounter count={pagination.total} />
+        <Wrapper>
+          <AvailableJobsCounter count={pagination.total} />
+          <MapLink />
+        </Wrapper>
         <Masonry.Layout>
           {
             jobs.map(job =>
