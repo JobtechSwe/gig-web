@@ -1,22 +1,21 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { withGoogleMap, withScriptjs, GoogleMap, Marker } from 'react-google-maps'
 import { CSSTransition } from 'react-transition-group'
+import Loader from '../Spinner/Loader'
+import Map from './Map'
+import MapJobCard from './MapJobCard'
+import MultipleSelectedJobsList from './MultipleSelectedJobsList'
 
 import '../../animations.css'
-import mapStyles from '../../resources/map.json'
-import markerIcon from '../../resources/img/marker.svg'
 import colors from '../../colors'
 
-import Card from '../Card/Card'
-import Body from '../Card/Body'
-import JobCard from '../Jobs/JobCard'
-import Loader from '../Spinner/Loader'
-
-import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer'
-
-const CloseButton = styled(({ className, onClick }) => <Link to="#" onClick={onClick} className={className}><i className="i-times"></i></Link>)`
+const CloseButton = styled(
+  ({ className, onClick }) =>
+    <Link to="#" onClick={onClick} className={className}>
+      <i className="i-times"></i>
+    </Link>
+)`
   position: absolute;
   top: 80px;
   left: 16px;
@@ -24,133 +23,6 @@ const CloseButton = styled(({ className, onClick }) => <Link to="#" onClick={onC
   font-size: 24px;
   z-index: 100000;
   text-shadow: 0 0 8px ${colors.gray50};
-`
-
-const roundCoordinates = (lat, lng) =>
-  [Math.round(lat * 10000) / 10000, Math.round(lng * 10000) / 10000]
-
-const Map = withScriptjs(withGoogleMap(({
-  lat, lng, jobs, onSelectJob, onSelectMultipleJobs, onMapClick
-}) =>
-  <GoogleMap
-    defaultZoom={10}
-    defaultCenter={{ lat, lng }}
-    defaultOptions={{ styles: mapStyles, disableDefaultUI: true }}
-    onClick={onMapClick}
-  >
-    <MarkerClusterer
-      onClick={(markerClusterer) => {
-        if (markerClusterer.getMap().zoom > 20) {
-          const markers = markerClusterer.getMarkers()
-          const locations = markers.map(
-            marker => roundCoordinates(marker.position.lat(), marker.position.lng()))
-
-          const matchingJobs = jobs.filter(
-            job => {
-              const [lat, lng] = roundCoordinates(job.latitude, job.longitude)
-              const match = locations.some(
-                (location) => {
-                  return lat === location[0] && lng === location[1]
-                }
-              )
-              return match
-            })
-
-          onSelectMultipleJobs(matchingJobs)
-        }
-      }}
-      averageCenter
-      enableRetinaIcons
-      gridSize={120}
-    >
-      {
-        jobs.map(job =>
-          <Marker
-            id={job.id}
-            key={job.id}
-            options={{ icon: markerIcon }}
-            position={{ lat: Number(job.latitude), lng: Number(job.longitude) }}
-            onClick={() => onSelectJob(job)}
-          />)
-      }
-    </MarkerClusterer>
-  </GoogleMap>
-))
-
-const SelectedJobCard = styled(({ className, job }) =>
-  <div className={className}>
-    {job && <JobCard job={job} sourceImagePosition="header">
-      <Link
-        to={`/jobs/${job.id}`}
-        className="btn btn-default btn-secondary btn-block"
-        style={{
-          color: colors.primary,
-          borderColor: colors.primary,
-          textTransform: 'none',
-          marginTop: '20px'
-        }}
-      >
-        Read more about this job
-      </Link>
-    </JobCard>}
-  </div>
-)`
-  position: absolute;
-  width: calc(100% - 20px);
-  left: 10px;
-  bottom: 0;
-
-  @media(min-width: 768px) {
-    width: 500px;
-    left: calc(50% - 250px);
-  }
-`
-
-const MultipleJobsListJob = styled(({ className, job, onSelectJob }) =>
-  <div className={className}>
-    <h3 style={{ fontSize: '16px', marginRight: '4px' }}>{job.title}</h3>
-    <button onClick={() => onSelectJob(job)} style={{
-      color: colors.primary,
-      borderColor: colors.primary,
-      borderWidth: '1px',
-      borderRadius: '3px',
-      background: 'transparent',
-      outline: 0
-    }}>Show</button>
-  </div>
-)`
-  display: flex;
-  justify-content: space-between;
-
-  &:not(:last-child) {
-    padding-bottom: 1em;
-    margin-bottom: 1em;
-    border-bottom: 1px solid ${colors.gray20};
-  }
-`
-
-const MultipleSelectedJobs = styled(({ className, jobs, onSelectJob }) =>
-  <div className={className}>
-    <Card>
-      <Body>
-        <div style={{ maxHeight: '300px', overflowY: 'scroll' }}>
-          {jobs.map(job => <MultipleJobsListJob key={job.id} job={job} onSelectJob={onSelectJob} />)}
-        </div>
-      </Body>
-    </Card>
-  </div>
-)`
-  position: absolute;
-  width: calc(100% - 20px);
-  left: 10px;
-  bottom: 0;
-
-  padding: 20px;
-
-  @media(min-width: 768px) {
-    width: 500px;
-    left: calc(50% - 250px);
-  }
 `
 
 class MapPage extends Component {
@@ -246,7 +118,7 @@ class MapPage extends Component {
           unmountOnExit
           onExited={() => this.setState({ multipleJobs: [] })}
         >
-          <MultipleSelectedJobs
+          <MultipleSelectedJobsList
             jobs={this.state.multipleJobs}
             onSelectJob={this.selectJob.bind(this)}
           />
@@ -258,7 +130,7 @@ class MapPage extends Component {
           unmountOnExit
           onExited={() => this.setState({ selectedJob: undefined })}
         >
-          <SelectedJobCard job={this.state.selectedJob} />
+          <MapJobCard job={this.state.selectedJob} />
         </CSSTransition>
       </div>
     )
