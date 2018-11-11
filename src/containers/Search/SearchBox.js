@@ -6,6 +6,7 @@ import { fetchPosition } from '../../actions/location'
 import {
   setShowSearchOptions,
   setFilterOptions,
+  setQueryText,
 } from '../../actions/search'
 import { clearProfile } from '../../actions/profile'
 import { fetchJobs } from '../../actions/jobs'
@@ -16,7 +17,8 @@ const mapStateToProps = state => {
     search: {
       showSearchOptions,
       pagination: { total },
-      filter
+      filter,
+      queryText
     },
     location: { position }
   } = state
@@ -26,7 +28,8 @@ const mapStateToProps = state => {
     showSearchOptions,
     profile,
     total,
-    filter
+    filter,
+    queryText
   }
 }
 
@@ -48,6 +51,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(fetchJobs())
   },
 
+  setQueryText: text => {
+    dispatch(setQueryText(text))
+    dispatch(fetchJobs())
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBox)

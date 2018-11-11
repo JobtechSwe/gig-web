@@ -50,23 +50,21 @@ class SearchBox extends Component {
 
   render() {
     const {
-      props: {
-        className,
-        search,
-        onSearch,
-        profile,
-        clearProfile,
-        showSearchOptions,
-        total
-      }
-    } = this
+      className,
+      queryText,
+      setQueryText,
+      profile,
+      clearProfile,
+      showSearchOptions,
+      total
+    } = this.props
 
     const displayProfileDisconnect = this.shouldDisplayProfileDisconnect()
 
     const searchFilter =
       <div className="default_view">
         <Heading className="visible-md visible-lg">Search gig jobs</Heading>
-        <SearchInput value={search} onChange={onSearch} />
+        <SearchInput value={queryText} onChange={setQueryText} />
         <SearchOptions toggle={this.showSearchOptions.bind(this)} />
         {
           displayProfileDisconnect &&

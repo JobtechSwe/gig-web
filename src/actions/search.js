@@ -3,6 +3,7 @@ export const SET_PAGINATION = 'SET_PAGINATION'
 export const SET_PAGE = 'SET_PAGE'
 export const SET_SHOW_SEARCH_OPTIONS = 'SET_SHOW_SEARCH_OPTIONS'
 export const SET_FILTER_OPTIONS = 'SET_FILTER_OPTIONS'
+export const SET_QUERY_TEXT = 'SET_QUERY_TEXT'
 
 export const setSortingOption = (option) => ({
   type: SET_SELECTED_SORTING_OPTION,
@@ -44,5 +45,12 @@ export const setFilterOptions = filter => {
   return {
     type: SET_FILTER_OPTIONS,
     filter
+  }
+}
+
+export const setQueryText = queryText => {
+  return {
+    type: SET_QUERY_TEXT,
+    queryText
   }
 }

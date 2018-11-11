@@ -3,9 +3,11 @@ import {
   SET_PAGINATION,
   SET_SHOW_SEARCH_OPTIONS,
   SET_FILTER_OPTIONS,
+  SET_QUERY_TEXT,
 } from '../actions/search'
 
 const initialState = {
+  queryText: '',
   selectedSortingOption: null,
   pagination: {
     total: 0,
@@ -43,6 +45,12 @@ const searchReducer = (state = initialState, action) => {
         ...state,
         filter: action.filter
       }
+
+      case SET_QUERY_TEXT:
+        return {
+          ...state,
+          queryText: action.queryText
+        }
 
     default:
       return state
